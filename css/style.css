@@ -1,7 +1,6 @@
-<style>
-  /* =============================================
-     DESIGN TOKENS — CHARTE WILDHARTT OFFICIELLE
-     ============================================= */
+/* =============================================
+   DESIGN TOKENS — CHARTE WILDHARTT OFFICIELLE
+   ============================================= */
   :root {
     /* === Palette Wildhartt === */
     --dark:       #303d3c;   /* Couleur principale dark/forest */
@@ -1655,10 +1654,9 @@
     border-color: var(--teal);
   }
 
-</style>
 /* =============================================
-     WILDHARTT.COM DESIGN ALIGNMENT — OVERRIDES
-     ============================================= */
+   WILDHARTT.COM DESIGN ALIGNMENT — OVERRIDES
+   ============================================= */
 
   /* Page max-width bump for more breathing room */
   :root { --page-w: 820px; }

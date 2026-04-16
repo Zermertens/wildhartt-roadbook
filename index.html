@@ -22,9 +22,9 @@
      ============================================= -->
 <nav class="progress-nav">
  <a href="#cover" class="nav-logo">
-  <img src="images/Wildhartt_logo_jaune.svg" alt="Wildhartt logo">
-  <span>Wildhartt</span>
+  <img src="images/Wildhartt_logo_horizontal_beige_web cropped.svg" alt="Wildhartt logo web">
 </a>
+    <div class="nav-links">
   <a href="#expect">À quoi s'attendre</a>
   <a href="#guide">Guide</a>
   <a href="#itineraire">Itinéraire</a>
@@ -33,11 +33,12 @@
   <a href="#pratique">Infos pratiques</a>
   <a href="#packlist">Packlist</a>
   <a href="#checklist">Checklist départ</a>
+    </div>
 </nav>
 
 <div class="roadbook">
 
-  <\!-- Bouton impression / PDF -->
+  <!-- Bouton impression / PDF -->
   <button class="print-btn" onclick="window.print()" title="Enregistrer en PDF ou imprimer">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
@@ -157,7 +158,7 @@
       <div class="expect-grid">
         <div class="expect-card">
           <div class="expect-icon">
-  <img src="images/Picto_reconnexion_humain_vert.svg" alt="L'effort physique">
+  <img src="images/Picto_tous_niveaux_vert.svg" alt="L'effort physique">
 </div>
           <div>
             <h4>L'effort physique</h4>
@@ -166,7 +167,7 @@
         </div>
         <div class="expect-card">
   <div class="expect-icon">
-    <img src="images/Picto_endroits_inacessibles_vert.svg" alt="carte_eu" class="picto-svg">
+    <img src="images/Picto_préservations_espaces_sauvages_vert.svg" alt="monde" class="picto-svg">
   </div>
   <div>
           <div>
@@ -291,23 +292,7 @@
             <div class="guide-card-tip"><strong>Son conseil :</strong> <span class="ph">[guide_conseil]</span></div>
           </div>
         </div>
-        <div class="guide-card">
-          <img class="guide-card-photo" src="images/img-05.jpg" alt="Guide">
-          <div class="guide-card-body">
-            <div class="guide-card-name"><span class="ph">[guide_prenom]</span></div>
-            <div class="guide-card-role"><span class="ph">[guide_specialite]</span></div>
-            <div class="guide-card-tip"><strong>Son conseil :</strong> <span class="ph">[guide_conseil]</span></div>
-          </div>
-        </div>
-        <div class="guide-card">
-          <img class="guide-card-photo" src="images/img-06.jpg" alt="Guide">
-          <div class="guide-card-body">
-            <div class="guide-card-name"><span class="ph">[guide_prenom]</span></div>
-            <div class="guide-card-role"><span class="ph">[guide_specialite]</span></div>
-            <div class="guide-card-tip"><strong>Son conseil :</strong> <span class="ph">[guide_conseil]</span></div>
-          </div>
-        </div>
-      </div>
+
       <span class="dev-note" style="color:rgba(232,117,26,0.4); margin-top:16px; display:block;">// guides_grid : boucle sur expedition.guides.all() dans le template Django</span>
     </div>
   </section>
@@ -517,7 +502,11 @@
             <li>Ton équipement endommagé</li>
           </ul>
           <br>
-          <a href="#" style="color:var(--orange); font-size:13px; font-family:var(--font-mono);">Souscrire via Wildhartt →</a>
+          <a id="email-link"
+   href="#"
+   style="color:var(--orange); font-size:13px; font-family:var(--font-mono); text-decoration:none;">
+  Souscrire via Wildhartt →
+</a>
         </div>
         <div class="pratique-card">
           <h4>🗺️ Zone &amp; réseau</h4>
@@ -609,11 +598,15 @@
 
       <!-- Partner -->
       <div class="packlist-partner">
-        <div class="partner-logo">MILLET</div>
+        <div class="partner-logo">
+  <img src="images/MILLET_LOGO.png" alt="Millet logo">
+</div>
         <div class="partner-text">
           <p><strong>Besoin de t'équiper ?</strong> Grâce à notre partenariat avec Millet, tu bénéficies de <strong>-20%</strong> sur tout leur catalogue, en ligne sur millet.com ou au magasin Millet de Bruxelles.</p>
         </div>
-        <div class="partner-code">WILDHARTT20</div>
+        <button class="partner-code" data-code="WILDHARTT20" type="button">
+  WILDHARTT20
+</button>
       </div>
 
       <!-- Fourni par Wildhartt -->
@@ -762,7 +755,7 @@
         </tr>
         <tr>
           <td colspan="2" style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); padding-top:16px;">
-            // boucle sur expedition.lexique — liste de {terme, definition} définie par le guide
+            // boucle sur expedition.lexique attachée à la discipline — liste de {terme, definition} définie par Wildhartt
           </td>
         </tr>
       </table>
@@ -856,23 +849,33 @@
   <section id="social">
     <div class="social-bg-photo"></div>
     <div class="social-inner">
-      <div class="section-label">La communauté</div>
-      <div class="section-title">Tag &amp; <em>partage</em></div>
-      <div style="display:grid;grid-template-columns:200px 1fr;gap:32px;align-items:center;margin-bottom:32px;text-align:left;">
-        <div class="social-iphone-wrap">
-          <img src="images/img-12.svg" style="width:100%;display:block;" />
+      <div class="social-grid">
+
+        <!-- Colonne gauche : polaroïd -->
+        <div class="social-photo-col">
+          <div class="social-polaroid">
+            <img src="images/selfie.jpg" alt="Expédition Wildhartt">
+            <div class="social-polaroid-caption">📍 Vu sur le terrain</div>
+          </div>
         </div>
-        <div>
-          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Rejoins la communauté</div>
-          <div style="font-family:var(--font-display);font-size:28px;font-weight:700;letter-spacing:-.02em;color:var(--white);margin-bottom:8px;">@wildhartt_eu</div>
-          <div style="font-family:var(--font-mono);font-size:13px;color:var(--orange);margin-bottom:20px;">#wildhartt</div>
-          <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.7;">19,3K followers · Aventures guidées au cœur de la nature · +100 façons d'explorer le monde sauvage</p>
+
+        <!-- Colonne droite : infos + concours -->
+        <div class="social-info-col">
+          <div class="section-label">La communauté</div>
+          <div class="section-title section-title-beige">Tag &amp; <em>partage</em></div>
+          <div class="social-handle-pill">
+            <span class="social-at">@wildhartt_eu</span>
+            <span class="social-sep">·</span>
+            <span class="social-tag">#wildhartt</span>
+          </div>
+          <p class="social-followers">19,3K followers · Aventures guidées au cœur de la nature · +100 façons d'explorer le monde sauvage</p>
+          <div class="concours-block">
+            <h4>📸 Concours photo</h4>
+            <p>Post ta plus belle photo de l'expédition avec le tag <strong>#Wildhartt</strong> — les meilleures sont mises en avant sur notre feed et peuvent te valoir une surprise.</p>
+            <span class="placeholder-tag">[description_concours_photo]</span>
+          </div>
         </div>
-      </div>
-      <div class="concours-block">
-        <h4>📸 Concours photo</h4>
-        <p>Post ta plus belle photo de l'expédition avec le tag <strong>#Wildhartt</strong> — les meilleures sont mises en avant sur notre feed et peuvent te valoir une surprise.</p>
-        <span class="placeholder-tag">[description_concours_photo]</span>
+
       </div>
     </div>
   </section>
@@ -1031,7 +1034,6 @@
       <div class="back-title">Bonne <em>expé !</em></div>
       <div class="back-logo" style="display:flex;align-items:center;gap:12px;justify-content:center;">
         <img src="images/Wildhartt_icone_jaune.svg" alt="Icône Wildhartt" class="back-logo-icon">
-        <img src="images/Wildhartt_wordmark_jaune.svg" alt="Wildhartt" class="back-logo-wordmark">
       </div>
     </div>
   </section>

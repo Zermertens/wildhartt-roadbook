@@ -69,14 +69,40 @@
     padding: 0 24px;
     display: flex;
     align-items: center;
-    gap: 0;
+    gap: 20px;
     height: 44px;
-    overflow-x: auto;
-    scrollbar-width: none;
+    box-sizing: border-box;
+    overflow: hidden;
   }
-  .progress-nav::-webkit-scrollbar { display: none; }
-  .progress-nav a {
-    color: rgba(255,255,255,0.45);
+  .nav-logo {
+    display:flex;
+    align-items:center;
+    padding-right: 20px !important;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    margin-right: 1px;
+  }
+  .nav-logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  /* on laisse l'espacement aux liens eux-mêmes */
+
+  min-width: 0;
+  flex: 1;
+  /* prend l'espace restant */
+
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* scroll horizontal si besoin */
+}
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    color: rgba(254, 253, 237, 1);
     text-decoration: none;
     font-size: 10px;
     font-family: var(--font-mono);
@@ -90,18 +116,9 @@
     border-bottom: 2px solid transparent;
     transition: color .2s, border-color .2s;
   }
-  .progress-nav a:hover { color: var(--orange); border-color: var(--orange); }
-  .nav-logo {
-    font-family: var(--font-display);
-    font-weight: 800;
-    letter-spacing: -.02em;
-    color: var(--white) !important;
-    font-size: 13px !important;
-    letter-spacing: .02em !important;
-    padding-right: 24px !important;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    margin-right: 8px;
-  }
+  .nav-links a:hover { color: var(--orange);
+  border-color: var(--orange); }
+
 
   /* =============================================
      COVER
@@ -241,6 +258,11 @@
     color: var(--text-main);
   }
   .section-title em { font-style: normal; color: var(--orange); }
+
+  .section-title-beige {
+    color: #FEFDED;
+  /* applique la couleur beige uniquement à CE titre */
+}
 
   /* =============================================
      TEASER / "DANS QUELQUES JOURS"
@@ -941,14 +963,30 @@
     align-items: center;
     gap: 20px;
   }
-  .packlist-partner .partner-logo {
-    font-family: var(--font-display);
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--white);
-    flex-shrink: 0;
-    letter-spacing: -.03em;
+ .packlist-partner .partner-logo {
+  flex-shrink: 0;
+  /* empêche le logo de rétrécir */
+
+  display: flex;
+  align-items: center;
+  /* centre verticalement le logo */
+ margin-right: 16px;
+  /* espace entre logo et texte */
   }
+  .packlist-partner .partner-logo img {
+  height: 35px;
+  /* taille du logo → ajuste ici */
+  width: auto;
+  /* garde les proportions */
+  display: block;
+  /* évite les bugs inline */
+}
+.packlist-partner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+}
   .packlist-partner .partner-text { flex: 1; }
   .packlist-partner .partner-text p { font-size: 13px; color: rgba(255,255,255,0.5); }
   .packlist-partner .partner-text strong { color: var(--white); }
@@ -1196,7 +1234,7 @@
     background-image: url('../images/img-11.jpg');
     background-size: cover;
     background-position: center 30%;
-    opacity: 0.40;
+    opacity: 0.35;
     z-index: 0;
   }
   #social::after {
@@ -1204,10 +1242,10 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      160deg,
-      rgba(37,49,48,0.82) 0%,
-      rgba(48,61,60,0.50) 55%,
-      rgba(37,49,48,0.90) 100%
+      140deg,
+      rgba(37,49,48,0.90) 0%,
+      rgba(48,61,60,0.55) 60%,
+      rgba(37,49,48,0.92) 100%
     );
     z-index: 1;
   }
@@ -1215,49 +1253,89 @@
     position: relative;
     z-index: 2;
     padding: var(--section-pad);
-    text-align: center;
   }
-  #social .section-label { color: var(--teal); opacity: 0.95; }
-  #social .section-title { color: var(--white); text-align: center; }
-  .social-iphone-wrap {
-    display: flex;
-    justify-content: center;
+
+  /* Grid 2 colonnes : polaroïd | infos */
+  .social-grid {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 64px;
     align-items: center;
-    padding: 24px 28px;
-    background: rgba(94,165,158,0.20);
-    border: 1px solid rgba(94,165,158,0.35);
-    border-radius: 24px;
-    width: 220px;
-    flex-shrink: 0;
   }
-  .social-iphone-wrap img { width: 100%; display: block; }
-  .social-handle {
+
+  /* Polaroïd */
+  .social-polaroid {
+    background: #fff;
+    padding: 10px 10px 44px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.30);
+    transform: rotate(-3.5deg);
+    transition: transform .35s cubic-bezier(.22,.68,0,1.2);
+  }
+  .social-polaroid:hover {
+    transform: rotate(0deg) scale(1.03);
+  }
+  .social-polaroid img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+  }
+  .social-polaroid-caption {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-top: 10px;
+  }
+
+  /* Colonne infos */
+  .social-info-col .section-label { margin-bottom: 6px; }
+  .social-info-col .section-title { margin-bottom: 28px; }
+
+  .social-handle-pill {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
+    gap: 12px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.16);
     border-radius: 40px;
-    padding: 12px 24px;
+    padding: 10px 22px;
+    margin-bottom: 14px;
+    backdrop-filter: blur(8px);
+  }
+  .social-at {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .social-sep { color: rgba(255,255,255,0.25); font-size: 16px; }
+  .social-tag {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--orange);
+  }
+  .social-followers {
+    font-size: 13px;
+    color: rgba(255,255,255,0.50);
+    line-height: 1.7;
     margin-bottom: 32px;
-    backdrop-filter: blur(6px);
   }
-  .social-handle .ico { font-size: 18px; }
-  .social-handle span { font-family: var(--font-mono); font-size: 14px; color: var(--white); }
-  .social-handle .hashtag { color: var(--orange); }
+
+  /* Concours block */
   .concours-block {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.13);
     border-radius: 16px;
-    padding: 28px 32px;
-    max-width: 480px;
-    margin: 0 auto;
+    padding: 24px 28px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.30);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25);
   }
-  .concours-block h4 { color: var(--white); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-  .concours-block p { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.7; }
-  .concours-block .placeholder-tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; background: rgba(255,255,255,0.06); border: 1px dashed rgba(232,117,26,0.4); color: var(--orange); padding: 3px 10px; border-radius: 4px; margin-top: 8px; }
+  .concours-block h4 { color: var(--white); font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .concours-block p { font-size: 13px; color: rgba(255,255,255,0.68); line-height: 1.7; }
+  .concours-block .placeholder-tag { display: inline-block; font-family: var(--font-mono); font-size: 11px; background: rgba(255,255,255,0.05); border: 1px dashed rgba(232,117,26,0.4); color: var(--orange); padding: 3px 10px; border-radius: 4px; margin-top: 8px; }
 
   /* =============================================
      HISTOIRE WILDHARTT
@@ -1301,7 +1379,12 @@
     position: sticky;
     top: 60px;
   }
-  .histoire-visual img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.7); }
+  .histoire-visual img { width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.7);
+  object-position: center right;
+  }
 
   /* =============================================
      AUTRES EXPÉS
@@ -1394,6 +1477,10 @@
     margin-top: 28px;
     opacity: 0.7;
   }
+
+.back-logo-icon {
+height: 150px
+}
 
   /* =============================================
      PLACEHOLDER STYLE (for CTO)
@@ -1491,28 +1578,16 @@
   .picto-icon .cls-1 { fill: var(--dark); }
   .picto-on-dark .cls-1 { fill: var(--cream); }
 
-  /* Instagram mockup */
-  .social-insta-mockup {
-    width: 220px;
-    flex-shrink: 0;
-    background: none;
-  }
-  .social-insta-mockup img {
-    width: 100%;
-    display: block;
-    background: none;
-  }
-  .social-content-wrap {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .social-text-col {
-    flex: 1;
-    min-width: 200px;
-    text-align: left;
+  /* Responsive social grid */
+  @media (max-width: 640px) {
+    .social-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .social-polaroid {
+      max-width: 220px;
+      margin: 0 auto;
+    }
   }
 
 
@@ -1585,6 +1660,7 @@
     /* Section labels */
     .section-label { color: #666 \!important; }
 
+
     /* Hide background images/overlays */
     * { background-image: none \!important; }
 
@@ -1592,9 +1668,9 @@
     section { page-break-inside: avoid; }
     h1, h2, h3, .section-title { page-break-after: avoid; }
 
-    /* Compact Instagram block */
-    .social-iphone-wrap { display: none \!important; }
-    .social-content-wrap { display: block \!important; }
+    /* Polaroïd en version compacte à l'impression */
+    .social-polaroid { transform: none \!important; box-shadow: none \!important; border: 1px solid #ddd \!important; max-width: 180px; }
+    .social-grid { grid-template-columns: 160px 1fr \!important; gap: 24px \!important; }
 
     /* Remove box shadows & borders */
     .concours-block, .check-item, [class*="-block"] {
@@ -1674,13 +1750,6 @@
     font-weight: 600;
     color: rgba(255,255,255,0.4);
     padding: 0 16px;
-  }
-  .progress-nav a:hover { color: var(--orange); border-color: var(--orange); }
-  .nav-logo {
-    font-weight: 800 !important;
-    font-size: 15px !important;
-    letter-spacing: -.02em !important;
-    color: var(--cream) !important;
   }
 
   /* ── COVER: full-bleed hero matching expedition cards */
@@ -2067,3 +2136,308 @@
     .expes-grid { grid-template-columns: 1fr; }
     .meta-tabs { gap: 4px; }
   }
+/* =============================================
+   PRINT ECO — VERSION ULTRA COMPACTE
+   ============================================= */
+@media print {
+
+  @page {
+    size: A4;
+    margin: 8mm;
+    /* encore moins de marges = moins de pages */
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 9pt;
+    line-height: 1.25;
+    font-family: Arial, Helvetica, sans-serif !important;
+  }
+
+  /* suppression visuels */
+  img,
+  video,
+  svg,
+  .bg,
+  .gradient,
+  .social-bg-photo,
+  .social-iphone-wrap,
+  .social-selfie,
+  .histoire-visual,
+  .partner-logo,
+  .icon,
+  .decor,
+  .dot,
+  .badge,
+  .print-btn,
+  .progress-nav,
+  .placeholder-tag,
+  .quote-mark,
+  .floating-image {
+    display: none !important;
+  }
+
+  /* suppression effets */
+  * {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+
+  .roadbook {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  section {
+    margin: 0 0 3mm 0 !important;
+    padding: 0 !important;
+    min-height: auto !important;
+    height: auto !important;
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+    border: none !important;
+  }
+
+  /* sections denses */
+  #cover,
+  #destination,
+  #expect,
+  #guide,
+  #social,
+  #story,
+  #next-steps,
+  #back-cover,
+  #packlist,
+  #transport,
+  #repas,
+  #pratique,
+  #checklist {
+    margin-bottom: 3mm !important;
+    padding: 0 !important;
+    min-height: auto !important;
+    height: auto !important;
+  }
+
+  /* titres plus petits */
+  h1 {
+    font-size: 14pt !important;
+    line-height: 1.1 !important;
+    margin: 0 0 2mm 0 !important;
+  }
+
+  h2,
+  .section-title {
+    font-size: 11pt !important;
+    line-height: 1.15 !important;
+    margin: 0 0 1.5mm 0 !important;
+    font-weight: 700 !important;
+  }
+
+  h3 {
+    font-size: 9.8pt !important;
+    line-height: 1.15 !important;
+    margin: 0 0 1.2mm 0 !important;
+    font-weight: 700 !important;
+  }
+
+  h4 {
+    font-size: 9pt !important;
+    line-height: 1.1 !important;
+    margin: 0 0 1mm 0 !important;
+    font-weight: 700 !important;
+  }
+
+  .section-label {
+    font-size: 6.5pt !important;
+    line-height: 1 !important;
+    letter-spacing: 0.08em !important;
+    color: #555 !important;
+    text-transform: uppercase;
+    margin: 0 0 1mm 0 !important;
+  }
+
+  p,
+  li,
+  span,
+  div {
+    font-size: 8.6pt !important;
+    line-height: 1.25 !important;
+    color: #000 !important;
+  }
+
+  p {
+    margin: 0 0 1.4mm 0 !important;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 1.5mm 0 !important;
+    padding-left: 4mm !important;
+  }
+
+  li {
+    margin-bottom: 0.8mm !important;
+  }
+
+  /* neutraliser emphase couleur */
+  .section-title em,
+  .orange,
+  .highlight,
+  .signature,
+  strong {
+    color: #000 !important;
+  }
+
+  /* mise en page : tout passe en bloc simple */
+  .grid,
+  .two-col,
+  .three-col,
+  .story-grid,
+  .social-main,
+  .vsp-grid,
+  .next-grid,
+  .cards-grid,
+  .guide-grid,
+  .destination-grid,
+  .hero-stats,
+  .meta-row {
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+  }
+
+  /* cartes : presque plus de style carte */
+  .card,
+  .expect-card,
+  .day-card,
+  .vsp-card,
+  .transport-card,
+  .meal-card,
+  .concours-block,
+  .packlist-partner,
+  .recommendation-card,
+  .info-card,
+  .packlist-wildhartt {
+    border: 0.6pt solid #bbb !important;
+    border-radius: 0 !important;
+    padding: 1.5mm 2mm !important;
+    margin: 0 0 2mm 0 !important;
+    background: transparent !important;
+  }
+
+  /* certains blocs peuvent même perdre leur bordure */
+  .concours-block,
+  .recommendation-card {
+    border: 0.5pt solid #ccc !important;
+  }
+
+  /* cover ultra compacte */
+  #cover .hero,
+  #cover .cover-inner {
+    margin: 0 0 2mm 0 !important;
+    padding: 0 !important;
+  }
+
+  /* packlist plus compacte */
+  .packlist-cols {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2mm !important;
+  }
+
+  .packlist-col {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .packlist-col-header {
+    margin-bottom: 1mm !important;
+    padding-bottom: 0.8mm !important;
+    border-bottom: 0.5pt solid #aaa !important;
+  }
+
+  .pack-item {
+    padding: 0.8mm 0 !important;
+    border-bottom: 0.4pt solid #ddd !important;
+    gap: 4px !important;
+  }
+
+  .pack-checkbox {
+    display: none !important;
+  }
+
+  .pack-item.checked span {
+    color: #666 !important;
+    text-decoration: line-through;
+  }
+
+  .partner-code {
+    display: inline-block !important;
+    border: 0.8pt solid #000 !important;
+    padding: 1mm 2mm !important;
+    font-size: 8pt !important;
+    font-weight: 700 !important;
+  }
+
+  /* checklist / niveaux / lexique */
+  .lexique-list {
+    column-count: 2;
+    column-gap: 5mm;
+  }
+
+  .story-text {
+    column-count: 1 !important;
+  }
+
+  /* évite les coupures absurdes */
+  h1, h2, h3, h4,
+  .section-title,
+  .section-label {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .day-card,
+  .packlist-col,
+  .vsp-card,
+  .transport-card,
+  .meal-card {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* liens sobres */
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  a::after {
+    content: none !important;
+  }
+
+  /* masquer éléments purement web */
+  .no-print {
+    display: none !important;
+  }
+
+  /* si certains blocs ont trop d’air à cause du flex */
+  [style*="display:flex"],
+  [style*="display: flex"] {
+    display: block !important;
+  }
+
+  /* si certains blocs ont des hauteurs inline */
+  [style*="height:"],
+  [style*="min-height:"] {
+    height: auto !important;
+    min-height: auto !important;
+  }
+}

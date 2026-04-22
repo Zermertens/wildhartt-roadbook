@@ -9,29 +9,32 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       navLinks.forEach(link => {
+        link.style.color = '#fefded';
         link.style.borderColor = 'transparent';
       });
 
-      const link = document.querySelector(`.progress-nav a[href="#${entry.target.id}"]`);
-      if (link) {
-        link.style.color = 'var(--orange)';
-        link.style.borderColor = 'var(--orange)';
+      const activeLink = document.querySelector(`.progress-nav a[href="#${entry.target.id}"]`);
+      if (activeLink) {
+        activeLink.style.color = '#ff9441';
+        activeLink.style.borderColor = '#ff9441';
       }
     }
   });
-}, { threshold: 0.3 });
+}, {
+  threshold: 0.3 });
 
 sections.forEach(section => observer.observe(section));
 
 // 1. récupérer ton lien dans le HTML
 const link = document.getElementById("email-link");
 
-// 2. définir tes variables dynamiques (à remplacer par ton backend plus tard)
-const expedition = "Ski de rando en Laponie";
-const dateStart = "12 mars 2026";
-const dateEnd = "18 mars 2026";
-const price = "45€";
-const name = "Maxime";
+// 2. variables dynamiques injectées par Django (data-* sur le lien ou contexte template)
+// En prod : remplacer par {{ expedition.titre }}, {{ booking.date_debut }}, etc.
+const expedition = link.dataset.expedition || "[expedition_titre]";
+const dateStart  = link.dataset.dateStart  || "[date_debut]";
+const dateEnd    = link.dataset.dateEnd    || "[date_fin]";
+const price      = link.dataset.price      || "[prix_assurance]";
+const name       = link.dataset.userName   || "[prenom_participant]";
 
 // 3. créer le message
 const body = `Hello l'équipe Wildhartt 🤩,

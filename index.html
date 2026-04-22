@@ -574,7 +574,18 @@
           <li class="py-1 flex gap-2 items-start before:content-['✓'] before:text-wh-orange before:text-[12px] before:shrink-0 before:mt-0.5">Ton équipement endommagé</li>
         </ul>
         <br>
-        <a id="email-link" href="#" class="text-wh-orange text-[13px] font-mono no-underline hover:underline">Souscrire via Wildhartt →</a>
+        <button
+          id="assurance-btn"
+          class="mt-1 text-wh-orange text-[13px] font-mono no-underline hover:underline bg-transparent border-none cursor-pointer p-0 font-[inherit]"
+          data-expedition="[expedition_titre]"
+          data-date-start="[date_debut]"
+          data-date-end="[date_fin]"
+          data-price="[prix_assurance]"
+          data-user-name="[prenom_participant]"
+          onclick="openAssuranceModal(this)"
+        >
+          Souscrire via Wildhartt →
+        </button>
       </div>
       <div class="pratique-card border border-black/10 rounded-xl p-6">
         <h4 class="text-[13px] font-semibold mb-3 flex items-center gap-2">🗺️ Zone &amp; réseau</h4>
@@ -1050,6 +1061,139 @@
 
 </div><!-- .roadbook -->
 
+<!-- =============================================
+     MODALE ASSURANCE
+     ============================================= -->
+<div
+  id="assurance-modal"
+  class="fixed inset-0 z-[500] flex items-center justify-center p-4 print:hidden"
+  style="display:none !important;"
+  aria-modal="true"
+  role="dialog"
+  aria-labelledby="modal-title"
+>
+  <!-- Overlay -->
+  <div
+    class="absolute inset-0 bg-black/60"
+    style="backdrop-filter:blur(4px);"
+    onclick="closeAssuranceModal()"
+  ></div>
+
+  <!-- Card -->
+  <div class="relative bg-white rounded-2xl shadow-[0_24px_80px_rgba(0,0,0,0.22)] w-full max-w-[520px] overflow-hidden">
+
+    <!-- Header -->
+    <div class="bg-wh-dark px-7 pt-6 pb-5">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-wh-teal mb-1">Assurance assistance</div>
+          <h2 id="modal-title" class="font-display text-[20px] font-bold tracking-[-0.02em] text-white leading-tight">
+            Souscrire via <em class="not-italic text-wh-orange">Wildhartt</em>
+          </h2>
+        </div>
+        <button
+          onclick="closeAssuranceModal()"
+          class="shrink-0 mt-0.5 text-white/40 hover:text-white/80 transition-colors bg-transparent border-none cursor-pointer p-1 rounded"
+          aria-label="Fermer"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="px-7 py-6">
+      <p class="text-[13px] text-wh-muted mb-4 leading-[1.6]">
+        Voici ton e-mail pré-rempli à destination de notre équipe.
+        Tu peux le modifier avant d'envoyer.
+      </p>
+
+      <!-- Textarea -->
+      <textarea
+        id="assurance-textarea"
+        rows="10"
+        class="w-full font-mono text-[12px] leading-[1.75] text-wh-text bg-wh-sand border border-black/10 rounded-xl px-4 py-3.5 resize-none focus:outline-none focus:ring-2 focus:ring-wh-orange/40 focus:border-wh-orange/60 transition-all"
+        spellcheck="false"
+      ></textarea>
+
+      <!-- Destinataire -->
+      <div class="flex items-center gap-2 mt-3 mb-5">
+        <svg class="w-3.5 h-3.5 text-wh-muted shrink-0" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+        <span class="font-mono text-[11px] text-wh-muted">Envoi à <strong class="text-wh-text">hello@wildhartt.com</strong></span>
+      </div>
+
+      <!-- Bouton principal -->
+      <button
+        id="assurance-send-btn"
+        onclick="sendAssuranceEmail()"
+        class="w-full bg-wh-orange text-white font-display font-bold text-[14px] tracking-[-0.01em] py-3.5 rounded-xl hover:opacity-90 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2.5 border-none cursor-pointer"
+      >
+        <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+        Envoyer par e-mail
+      </button>
+
+      <p class="text-center font-mono text-[10px] text-wh-muted/70 mt-3 leading-[1.6]">
+        Ouvre ton application e-mail avec le message pré-rempli.<br>
+        Tu peux le relire avant d'envoyer.
+      </p>
+    </div>
+  </div>
+</div>
+
 <script src="js/main.js"></script>
+<script>
+  /* ── Modale assurance ── */
+
+  function buildAssuranceMessage(btn) {
+    const expedition = btn.dataset.expedition || "[expedition_titre]";
+    const dateStart  = btn.dataset.dateStart  || "[date_debut]";
+    const dateEnd    = btn.dataset.dateEnd    || "[date_fin]";
+    const price      = btn.dataset.price      || "[prix_assurance]";
+    const name       = btn.dataset.userName   || "[prenom_participant]";
+
+    return `Hello l'équipe Wildhartt 🤩,
+
+Je souhaite souscrire à une assurance assistance pour mon expédition ${expedition} du ${dateStart} au ${dateEnd}.
+
+Je confirme ma souscription au prix de ${price} et attends un lien de paiement de votre part.
+
+Je me réjouis d'y être 🔥
+
+Merci beaucoup
+
+${name}`;
+  }
+
+  function openAssuranceModal(btn) {
+    const modal    = document.getElementById('assurance-modal');
+    const textarea = document.getElementById('assurance-textarea');
+    textarea.value = buildAssuranceMessage(btn);
+    modal.style.removeProperty('display');
+    document.body.style.overflow = 'hidden';
+    // Focus textarea at end
+    textarea.focus();
+    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+  }
+
+  function closeAssuranceModal() {
+    const modal = document.getElementById('assurance-modal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function sendAssuranceEmail() {
+    const body    = document.getElementById('assurance-textarea').value;
+    const subject = "Souscription assurance – Wildhartt";
+    const mailto  = `mailto:hello@wildhartt.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  }
+
+  // Fermer avec Échap
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeAssuranceModal();
+  });
+</script>
 </body>
 </html>

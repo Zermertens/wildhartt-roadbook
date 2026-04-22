@@ -1131,13 +1131,11 @@
         class="w-full bg-wh-orange text-white font-display font-bold text-[14px] tracking-[-0.01em] py-3.5 rounded-xl hover:opacity-90 active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2.5 border-none cursor-pointer"
       >
         <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
-        Envoyer par e-mail
+        <span id="assurance-btn-label">Envoyer</span>
       </button>
 
-      <p class="text-center font-mono text-[10px] text-wh-muted/70 mt-3 leading-[1.6]">
-        Ouvre ton application e-mail avec le message pré-rempli.<br>
-        Tu peux le relire avant d'envoyer.
-      </p>
+      <!-- Feedback -->
+      <div id="assurance-feedback" class="hidden mt-4 px-4 py-3 rounded-xl text-[13px] font-mono text-center"></div>
     </div>
   </div>
 </div>
@@ -1146,6 +1144,11 @@
 <script>
   /* ── Modale assurance ── */
 
+  // URL de l'endpoint Django — à adapter selon ton urls.py
+  // En prod : '/api/assurance-email/'
+  // En dev statique : null → fallback mailto
+  const ASSURANCE_API_URL = null; // Remplace par '/api/assurance-email/' une fois Django branché
+
   function buildAssuranceMessage(btn) {
     const expedition = btn.dataset.expedition || "[expedition_titre]";
     const dateStart  = btn.dataset.dateStart  || "[date_debut]";
@@ -1153,41 +1156,87 @@
     const price      = btn.dataset.price      || "[prix_assurance]";
     const name       = btn.dataset.userName   || "[prenom_participant]";
 
-    return `Hello l'équipe Wildhartt 🤩,
-
-Je souhaite souscrire à une assurance assistance pour mon expédition ${expedition} du ${dateStart} au ${dateEnd}.
-
-Je confirme ma souscription au prix de ${price} et attends un lien de paiement de votre part.
-
-Je me réjouis d'y être 🔥
-
-Merci beaucoup
-
-${name}`;
+    return `Hello l'équipe Wildhartt 🤩,\n\nJe souhaite souscrire à une assurance assistance pour mon expédition ${expedition} du ${dateStart} au ${dateEnd}.\n\nJe confirme ma souscription au prix de ${price} et attends un lien de paiement de votre part.\n\nJe me réjouis d'y être 🔥\n\nMerci beaucoup\n\n${name}`;
   }
 
   function openAssuranceModal(btn) {
     const modal    = document.getElementById('assurance-modal');
     const textarea = document.getElementById('assurance-textarea');
+    const feedback = document.getElementById('assurance-feedback');
+    const sendBtn  = document.getElementById('assurance-send-btn');
+    const label    = document.getElementById('assurance-btn-label');
+
+    // Reset état
+    feedback.className = 'hidden mt-4 px-4 py-3 rounded-xl text-[13px] font-mono text-center';
+    sendBtn.disabled = false;
+    label.textContent = 'Envoyer';
+
     textarea.value = buildAssuranceMessage(btn);
     modal.style.removeProperty('display');
     document.body.style.overflow = 'hidden';
-    // Focus textarea at end
-    textarea.focus();
-    textarea.setSelectionRange(textarea.value.length, textarea.value.length);
   }
 
   function closeAssuranceModal() {
-    const modal = document.getElementById('assurance-modal');
-    modal.style.display = 'none';
+    document.getElementById('assurance-modal').style.display = 'none';
     document.body.style.overflow = '';
   }
 
-  function sendAssuranceEmail() {
-    const body    = document.getElementById('assurance-textarea').value;
-    const subject = "Souscription assurance – Wildhartt";
-    const mailto  = `mailto:hello@wildhartt.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+  async function sendAssuranceEmail() {
+    const body    = document.getElementById('assurance-textarea').value.trim();
+    const sendBtn = document.getElementById('assurance-send-btn');
+    const label   = document.getElementById('assurance-btn-label');
+    const feedback = document.getElementById('assurance-feedback');
+
+    if (!body) return;
+
+    // ── CAS 1 : API Django disponible ──────────────────────────────
+    if (ASSURANCE_API_URL) {
+      sendBtn.disabled = true;
+      label.textContent = 'Envoi en cours…';
+      feedback.className = 'hidden mt-4 px-4 py-3 rounded-xl text-[13px] font-mono text-center';
+
+      // Récupère le token CSRF depuis le cookie Django
+      const csrfToken = document.cookie.split('; ')
+        .find(r => r.startsWith('csrftoken='))
+        ?.split('=')[1] || '';
+
+      try {
+        const res = await fetch(ASSURANCE_API_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+          },
+          body: JSON.stringify({ body }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.ok) {
+          // Succès
+          label.textContent = 'Envoyé ✓';
+          sendBtn.style.background = '#4caf7d';
+          feedback.textContent = "Ta demande a bien été envoyée à l'équipe Wildhartt. On te répond très vite 🙌";
+          feedback.className = 'mt-4 px-4 py-3 rounded-xl text-[13px] font-mono text-center bg-[#e6f4ea] text-[#2d6a4f]';
+          // Ferme automatiquement après 3 s
+          setTimeout(closeAssuranceModal, 3000);
+        } else {
+          throw new Error(data.error || 'Erreur serveur');
+        }
+      } catch (err) {
+        // Erreur réseau ou serveur
+        sendBtn.disabled = false;
+        label.textContent = 'Envoyer';
+        feedback.textContent = `Une erreur s'est produite : ${err.message}. Réessaie ou écris directement à hello@wildhartt.com.`;
+        feedback.className = 'mt-4 px-4 py-3 rounded-xl text-[13px] font-mono text-center bg-[#fde8d8] text-[#b5451b]';
+      }
+
+    // ── CAS 2 : fallback mailto (mockup statique / dev) ────────────
+    } else {
+      const subject = "Souscription assurance – Wildhartt";
+      const mailto  = `mailto:hello@wildhartt.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    }
   }
 
   // Fermer avec Échap

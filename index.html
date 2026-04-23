@@ -313,11 +313,11 @@
       "Et ça, c'est mon bureau." Tu l'entendras sûrement dire cette phrase, en regardant la vue.
       Mais il te fera découvrir bien plus que des paysages.
     </p>
-    <div class="grid grid-cols-3 gap-5">
+    <div class="grid grid-cols-2 gap-2">
       <!-- Guide 1 -->
       <div class="bg-white/[0.05] border border-white/[0.08] rounded-[14px] overflow-hidden hover:-translate-y-1 hover:bg-white/[0.08] transition-all duration-200">
         <img class="w-full aspect-square object-cover object-top block saturate-[0.95] brightness-100" src="images/img-04.jpg" alt="Guide 1">
-        <div class="p-[16px]">
+        <div class="p-5">
           <div class="font-display text-[16px] font-bold tracking-[-0.01em] text-white mb-1"><span class="ph" data-field="expedition.guides.0.full_name">expedition.guides.0.full_name</span></div>
           <div class="font-mono text-[9px] tracking-[0.12em] text-wh-orange uppercase mb-2.5"><span class="ph" data-field="expedition.guides.0.title">expedition.guides.0.title</span></div>
           <div class="text-[12px] text-white/50 leading-[1.6]"><strong class="text-white/80 font-medium">Qui je suis ?</strong> <span class="ph" data-field="expedition.guides.0.description">expedition.guides.0.description</span></div>
@@ -453,8 +453,8 @@
             <p class="text-[13px] text-wh-muted leading-[1.65] mb-3.5"><span class="ph" data-field="expedition.days.2.body">expedition.days.2.body</span></p>
             <div class="flex items-center gap-2 py-2.5 px-[14px] bg-wh-orange/10 rounded-lg text-[12px] border border-wh-orange/20">
               <span>🏔️</span>
-              <span class="font-semibold text-wh-text"><span class="ph" data-field="expedition.days.2.details.sommet">expedition.days.2.details.sommet</span></span>
-              <span class="ml-auto font-mono text-[10px] text-wh-orange"><span class="ph" data-field="expedition.days.2.details.note_sommet">expedition.days.2.details.note_sommet</span></span>
+              <span class="font-semibold text-wh-text"><span class="ph" data-field="expedition.days.2.details.hebergement">expedition.days.2.details.hebergement</span></span>
+              <span class="ml-auto font-mono text-[10px] text-wh-orange"><span class="ph" data-field="expedition.days.2.details.note_reseau">expedition.days.2.details.note_reseau</span></span>
             </div>
           </div>
           <div class="relative overflow-hidden">
@@ -475,17 +475,22 @@
       <div class="bg-wh-cream border border-black/10 rounded-xl py-[22px] px-5">
         <h4 class="text-[13px] font-semibold mb-2 flex items-center gap-2">🚗 En voiture</h4>
         <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph" data-field="expedition.transportations.voiture.body">expedition.transportations.voiture.body</span></p>
-        <a href="#" class="text-wh-orange no-underline text-[12px] font-mono inline-block mt-2 hover:underline">Ouvrir dans Maps →</a>
-      </div>
+  <a
+  href="https://www.google.com/maps"
+  target="_blank"
+  rel="noopener noreferrer"
+  class="text-wh-orange no-underline text-[12px] font-mono inline-block mt-2 hover:underline"
+>
+  Ouvrir dans Maps →
+</a> </div>
       <div class="bg-wh-cream border border-black/10 rounded-xl py-[22px] px-5">
         <h4 class="text-[13px] font-semibold mb-2 flex items-center gap-2">🚆 En train</h4>
         <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph" data-field="expedition.transportations.train.body">expedition.transportations.train.body</span></p>
-        <a href="#" class="text-wh-orange no-underline text-[12px] font-mono inline-block mt-2 hover:underline">Voir les horaires →</a>
+        <a href="https://www.thetrainline.com/fr" class="text-wh-orange no-underline text-[12px] font-mono inline-block mt-2 hover:underline">Voir les horaires →</a>
       </div>
       <div class="bg-wh-cream border border-black/10 rounded-xl py-[22px] px-5">
         <h4 class="text-[13px] font-semibold mb-2 flex items-center gap-2">✈️ En avion</h4>
         <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph" data-field="expedition.transportations.avion.body">expedition.transportations.avion.body</span></p>
-        <a href="#" class="text-wh-orange no-underline text-[12px] font-mono inline-block mt-2 hover:underline">Voir les vols →</a>
       </div>
     </div>
     <div class="bg-wh-dark text-white rounded-xl py-6 px-7 flex items-center gap-6">

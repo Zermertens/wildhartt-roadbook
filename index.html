@@ -241,64 +241,65 @@
   <!-- =============================================
        MÉTÉO
        ============================================= -->
-  <section id="meteo" class="bg-white py-[72px] px-12 scroll-mt-11">
+  <!--
+    Django → injecter les data-* ci-dessous via le contexte template :
+      data-lat="{{ expedition.latitude }}"
+      data-lon="{{ expedition.longitude }}"
+      data-start-month="{{ booking.date_debut|date:'n' }}"
+      data-end-month="{{ booking.date_fin|date:'n' }}"
+  -->
+  <section id="meteo" class="bg-white py-[72px] px-12 scroll-mt-11"
+    data-lat="31.06"
+    data-lon="-7.91"
+    data-start-month="6"
+    data-end-month="9"
+  >
     <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-wh-teal mb-1.5">Conditions</div>
     <div class="font-display text-[clamp(24px,3.5vw,36px)] font-bold tracking-[-0.02em] leading-[1.15] mb-8 text-wh-text">Point <em class="not-italic text-wh-orange">météo</em></div>
     <p class="text-[14px] text-wh-muted mb-8 max-w-[480px] leading-[1.7]">
       Ton guide fera un point météo précis dans le groupe WhatsApp de l'expédition,
       48h avant le départ. En attendant, voici les températures moyennes sur site.
     </p>
+
+    <!-- Tableau météo — rempli dynamiquement par loadMeteoData() -->
     <div class="overflow-x-auto rounded-xl border border-black/10">
       <table class="w-full border-collapse text-[12px] text-center">
         <thead>
-          <tr class="bg-wh-dark text-white">
+          <tr id="meteo-thead" class="bg-wh-dark text-white">
             <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal text-left pl-4"></th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal">Jan</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal">Fév</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal">Mar</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal">Avr</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal">Mai</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal bg-wh-orange/20 text-wh-orange-lt">Juin</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal bg-wh-orange/20 text-wh-orange-lt">Juil</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal bg-wh-orange/20 text-wh-orange-lt">Août</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal bg-wh-orange/20 text-wh-orange-lt">Sep</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal">Oct</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal">Nov</th>
-            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal">Déc</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="1">Jan</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="2">Fév</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="3">Mar</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="4">Avr</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="5">Mai</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="6">Juin</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="7">Juil</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="8">Août</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="9">Sep</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="10">Oct</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="11">Nov</th>
+            <th class="py-2.5 px-2 font-mono text-[9px] tracking-[0.1em] uppercase font-normal" data-m="12">Déc</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="border-b border-black/10">
-            <td class="text-left pl-4 py-3 text-[11px] font-semibold font-mono text-wh-text tracking-[0.04em] whitespace-nowrap">Activité</td>
-            <td class="py-3 px-2 text-[14px] text-wh-muted">❄️</td><td class="py-3 px-2 text-[14px] text-wh-muted">❄️</td><td class="py-3 px-2 text-[14px] text-wh-muted">❄️</td><td class="py-3 px-2 text-[14px] text-wh-muted">🌨</td><td class="py-3 px-2 text-[14px] text-wh-muted">🥾</td>
-            <td class="py-3 px-2 text-[14px] bg-wh-orange/[0.14]">🥾</td><td class="py-3 px-2 text-[14px] bg-wh-orange/[0.14]">🥾</td><td class="py-3 px-2 text-[14px] bg-wh-orange/[0.14]">🥾</td><td class="py-3 px-2 text-[14px] bg-wh-orange/[0.14]">🥾</td>
-            <td class="py-3 px-2 text-[14px] text-wh-muted">🍂</td><td class="py-3 px-2 text-[14px] text-wh-muted">🍂</td><td class="py-3 px-2 text-[14px] text-wh-muted">❄️</td>
-          </tr>
-          <tr class="border-b border-black/10">
-            <td class="text-left pl-4 py-3 text-[11px] font-semibold font-mono text-wh-text tracking-[0.04em]">T° max</td>
-            <td class="py-3 px-2 text-wh-muted">4°</td><td class="py-3 px-2 text-wh-muted">4°</td><td class="py-3 px-2 text-wh-muted">8°</td><td class="py-3 px-2 text-wh-muted">10°</td><td class="py-3 px-2 text-wh-muted">13°</td>
-            <td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">15°</td><td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">17°</td><td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">17°</td><td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">14°</td>
-            <td class="py-3 px-2 text-wh-muted">9°</td><td class="py-3 px-2 text-wh-muted">4°</td><td class="py-3 px-2 text-wh-muted">2°</td>
-          </tr>
-          <tr class="border-b border-black/10">
-            <td class="text-left pl-4 py-3 text-[11px] font-semibold font-mono text-wh-text tracking-[0.04em]">T° min</td>
-            <td class="py-3 px-2 text-wh-muted">-10°</td><td class="py-3 px-2 text-wh-muted">-8°</td><td class="py-3 px-2 text-wh-muted">-6°</td><td class="py-3 px-2 text-wh-muted">-3°</td><td class="py-3 px-2 text-wh-muted">1°</td>
-            <td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">4°</td><td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">6°</td><td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">6°</td><td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">3°</td>
-            <td class="py-3 px-2 text-wh-muted">-1°</td><td class="py-3 px-2 text-wh-muted">-5°</td><td class="py-3 px-2 text-wh-muted">-9°</td>
-          </tr>
-          <tr>
-            <td class="text-left pl-4 py-3 text-[11px] font-semibold font-mono text-wh-text tracking-[0.04em]">Pluie</td>
-            <td class="py-3 px-2 text-wh-muted">3j</td><td class="py-3 px-2 text-wh-muted">4j</td><td class="py-3 px-2 text-wh-muted">6j</td><td class="py-3 px-2 text-wh-muted">8j</td><td class="py-3 px-2 text-wh-muted">9j</td>
-            <td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">8j</td><td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">6j</td><td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">6j</td><td class="py-3 px-2 bg-wh-orange/[0.14] font-semibold text-wh-orange">7j</td>
-            <td class="py-3 px-2 text-wh-muted">5j</td><td class="py-3 px-2 text-wh-muted">4j</td><td class="py-3 px-2 text-wh-muted">3j</td>
+        <tbody id="meteo-tbody">
+          <!-- Skeleton de chargement -->
+          <tr class="border-b border-black/10" id="meteo-skeleton">
+            <td class="text-left pl-4 py-3 text-[11px] font-semibold font-mono text-wh-muted" colspan="13">
+              <span class="inline-flex items-center gap-2 text-wh-muted/60">
+                <svg class="w-3.5 h-3.5 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke-opacity=".25"/><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/></svg>
+                Chargement des données météo…
+              </span>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="meteo-tip mt-5 py-4 px-5 bg-wh-sand rounded-lg text-[13px] text-wh-muted flex gap-2.5 items-start before:content-['💬'] before:text-[15px] before:shrink-0 before:mt-px">
-      Les colonnes en orange correspondent à la saison idéale pour cette expédition.
-      Ces données sont des moyennes — prévoie toujours une couche imperméable.
-      <span class="dev-note">// colonnes "active" calculées dynamiquement selon la date de l'expé</span>
+
+    <div id="meteo-tip" class="hidden meteo-tip mt-5 py-4 px-5 bg-wh-sand rounded-lg text-[13px] text-wh-muted flex gap-2.5 items-start before:content-['💬'] before:text-[15px] before:shrink-0 before:mt-px">
+      Les colonnes en orange correspondent à la saison idéale pour cette expédition. Ces données sont des moyennes — prévoie toujours une couche imperméable.
+    </div>
+    <div id="meteo-error" class="hidden mt-5 py-3 px-4 bg-[#fde8d8] rounded-lg text-[13px] text-[#b5451b] font-mono">
+      ⚠️ Données météo non disponibles pour le moment. Réessaie ou contacte l'équipe.
     </div>
   </section>
 
@@ -1141,6 +1142,148 @@
 </div>
 
 <script src="js/main.js"></script>
+<script>
+/* ══════════════════════════════════════════════════════════
+   MÉTÉO — Open-Meteo (gratuit, pas de clé API)
+   Source : archive-api.open-meteo.com
+   Moyennes sur les 5 dernières années complètes.
+
+   En production Django, appeler ce endpoint côté serveur
+   et injecter les données directement dans le template :
+   ──────────────────────────────────────────────────────────
+   # views.py
+   import requests, json
+   from django.core.cache import cache
+
+   def get_meteo_mensuel(lat, lon):
+       key = f"meteo_{lat}_{lon}"
+       if cached := cache.get(key): return json.loads(cached)
+       today = date.today()
+       end   = date(today.year - 1, 12, 31)
+       start = date(today.year - 6,  1,  1)
+       r = requests.get("https://archive-api.open-meteo.com/v1/archive", params={
+           "latitude": lat, "longitude": lon,
+           "start_date": start, "end_date": end,
+           "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum",
+           "timezone": "auto",
+       }, timeout=15)
+       data = r.json()
+       result = compute_monthly(data["daily"])   # même logique que JS ci-dessous
+       cache.set(key, json.dumps(result), 60*60*24*7)  # cache 1 semaine
+       return result
+   ══════════════════════════════════════════════════════════ */
+
+(async function loadMeteoData() {
+  const section    = document.getElementById('meteo');
+  const tbody      = document.getElementById('meteo-tbody');
+  const thead      = document.getElementById('meteo-thead');
+  const tip        = document.getElementById('meteo-tip');
+  const errBox     = document.getElementById('meteo-error');
+  if (!section || !tbody) return;
+
+  const lat        = parseFloat(section.dataset.lat  || '46.0');
+  const lon        = parseFloat(section.dataset.lon  || '7.7');
+  const startMonth = parseInt(section.dataset.startMonth || '1');  // 1-12
+  const endMonth   = parseInt(section.dataset.endMonth   || '12');
+
+  // ── Années à requêter (5 ans complets) ─────────────────────────
+  const currentYear = new Date().getFullYear();
+  const endYear     = currentYear - 1;
+  const startYear   = endYear - 4;
+
+  const url = new URL('https://archive-api.open-meteo.com/v1/archive');
+  url.searchParams.set('latitude',    lat);
+  url.searchParams.set('longitude',   lon);
+  url.searchParams.set('start_date',  `${startYear}-01-01`);
+  url.searchParams.set('end_date',    `${endYear}-12-31`);
+  url.searchParams.set('daily',       'temperature_2m_max,temperature_2m_min,precipitation_sum');
+  url.searchParams.set('timezone',    'auto');
+
+  try {
+    const res  = await fetch(url.toString());
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    // ── Agrégation mensuelle ──────────────────────────────────────
+    // Pour chaque mois (1-12) : somme et comptage pour calculer la moyenne
+    const agg = Array.from({ length: 12 }, () => ({
+      tmax_sum: 0, tmax_count: 0,
+      tmin_sum: 0, tmin_count: 0,
+      rain_days: 0, days_total: 0,
+    }));
+
+    const dates  = data.daily.time;
+    const tmaxes = data.daily.temperature_2m_max;
+    const tmins  = data.daily.temperature_2m_min;
+    const precips = data.daily.precipitation_sum;
+
+    for (let i = 0; i < dates.length; i++) {
+      const m = parseInt(dates[i].slice(5, 7)) - 1; // 0-11
+      if (tmaxes[i] !== null) { agg[m].tmax_sum += tmaxes[i]; agg[m].tmax_count++; }
+      if (tmins[i]  !== null) { agg[m].tmin_sum += tmins[i];  agg[m].tmin_count++; }
+      agg[m].days_total++;
+      if (precips[i] !== null && precips[i] > 0.2) agg[m].rain_days++;
+    }
+
+    // Moyennes finales (sur 5 ans → divise jours pluie par 5)
+    const monthly = agg.map(a => ({
+      tmax:      a.tmax_count ? Math.round(a.tmax_sum / a.tmax_count) : null,
+      tmin:      a.tmin_count ? Math.round(a.tmin_sum / a.tmin_count) : null,
+      rain_days: a.days_total ? Math.round(a.rain_days / 5) : null,
+    }));
+
+    // ── Emoji activité heuristique ────────────────────────────────
+    function activityEmoji(m, tmax) {
+      const isActive = (m + 1) >= startMonth && (m + 1) <= endMonth;
+      if (tmax === null) return '—';
+      if (tmax < 0)  return '❄️';
+      if (tmax < 5)  return '🌨';
+      if (tmax < 10) return isActive ? '🥾' : '🌤';
+      if (tmax < 28) return isActive ? '🥾' : '🌿';
+      return '🌡️'; // très chaud
+    }
+
+    // ── Coloriage colonnes actives dans le thead ──────────────────
+    thead.querySelectorAll('th[data-m]').forEach(th => {
+      const m = parseInt(th.dataset.m);
+      if (m >= startMonth && m <= endMonth) {
+        th.classList.add('bg-wh-orange/20', 'text-wh-orange-lt');
+      }
+    });
+
+    // ── Génère les 4 lignes du tbody ──────────────────────────────
+    function cell(m, content) {
+      const active = (m + 1) >= startMonth && (m + 1) <= endMonth;
+      const base   = 'py-3 px-2';
+      const cls    = active
+        ? `${base} bg-wh-orange/[0.14] font-semibold text-wh-orange`
+        : `${base} text-wh-muted`;
+      return `<td class="${cls}">${content}</td>`;
+    }
+
+    const rows = [
+      { label: 'Activité', fn: (m, d) => `<span class="text-[14px]">${activityEmoji(m, d.tmax)}</span>`, border: true  },
+      { label: 'T° max',   fn: (m, d) => d.tmax !== null ? `${d.tmax}°` : '–',                           border: true  },
+      { label: 'T° min',   fn: (m, d) => d.tmin !== null ? `${d.tmin}°` : '–',                           border: true  },
+      { label: 'Pluie',    fn: (m, d) => d.rain_days !== null ? `${d.rain_days}j` : '–',                  border: false },
+    ];
+
+    tbody.innerHTML = rows.map(row => `
+      <tr class="${row.border ? 'border-b border-black/10' : ''}">
+        <td class="text-left pl-4 py-3 text-[11px] font-semibold font-mono text-wh-text tracking-[0.04em] whitespace-nowrap">${row.label}</td>
+        ${monthly.map((d, m) => cell(m, row.fn(m, d))).join('')}
+      </tr>`
+    ).join('');
+
+    tip.classList.remove('hidden');
+
+  } catch (err) {
+    console.warn('Open-Meteo error:', err);
+    document.getElementById('meteo-skeleton').remove();
+    errBox.classList.remove('hidden');
+  }
+})();
+</script>
 <script>
   /* ── Modale assurance ── */
 

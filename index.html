@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roadbook – [expedition_titre] · Wildhartt</title>
+<title data-field="expedition.title">Roadbook · Wildhartt</title>
 
 <!-- Tailwind CDN (Play CDN — remplacer par build Tailwind en prod) -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -106,19 +106,19 @@
       <div class="flex gap-8 flex-wrap">
         <div class="flex flex-col gap-[3px]">
           <span class="text-[9px] tracking-[0.14em] uppercase text-white/35 font-mono">Expédition</span>
-          <span class="text-[15px] font-medium text-white"><span class="ph">[expedition_titre]</span></span>
+          <span class="text-[15px] font-medium text-white"><span class="ph" data-field="expedition.title">expedition.title</span></span>
         </div>
         <div class="flex flex-col gap-[3px]">
           <span class="text-[9px] tracking-[0.14em] uppercase text-white/35 font-mono">Date de départ</span>
-          <span class="text-[15px] font-medium text-white"><span class="ph">[date_debut]</span></span>
+          <span class="text-[15px] font-medium text-white"><span class="ph" data-field="booking.date_debut">booking.date_debut</span></span>
         </div>
         <div class="flex flex-col gap-[3px]">
           <span class="text-[9px] tracking-[0.14em] uppercase text-white/35 font-mono">Durée</span>
-          <span class="text-[15px] font-medium text-white"><span class="ph">[expedition_duree]</span></span>
+          <span class="text-[15px] font-medium text-white"><span class="ph" data-field="expedition.duration_in_days">expedition.duration_in_days</span></span>
         </div>
         <div class="flex flex-col gap-[3px]">
           <span class="text-[9px] tracking-[0.14em] uppercase text-white/35 font-mono">Participants</span>
-          <span class="text-[15px] font-medium text-white"><span class="ph">[nb_participants]</span> / <span class="ph">[nb_max]</span>
+          <span class="text-[15px] font-medium text-white"><span class="ph" data-field="booking.nb_participants">booking.nb_participants</span> / <span class="ph" data-field="expedition.max_participants">expedition.max_participants</span>
         </div>
       </div>
     </div>
@@ -141,9 +141,9 @@
         <p class="text-white/65 text-[15px] leading-[1.75]">Ce roadbook est ton compagnon de préparation. Garde-le sous la main.</p>
       </div>
       <div class="rounded-xl overflow-hidden aspect-[3/4] relative">
-        <img src="images/img-03.jpg" alt="Destination" class="w-full h-full object-cover saturate-[0.85]">//image de l'expédition en question
+        <img src="images/img-03.jpg" alt="Destination" class="w-full h-full object-cover saturate-[0.85]" data-field="expedition.card_image">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent pt-6 px-4 pb-4 font-mono text-[9px] tracking-[0.14em] text-white/60 uppercase">
-          <span class="ph">[expedition_titre]</span> · <span class="ph">[expedition_destination]</span>
+          <span class="ph" data-field="expedition.title">expedition.title</span> · <span class="ph" data-field="expedition.country.name">expedition.country.name</span>
         </div>
       </div>
     </div>
@@ -160,28 +160,28 @@
         <span class="text-[15px]">📅</span>
         <div>
           <div class="text-[9px] tracking-[0.12em] uppercase text-wh-muted font-mono mb-px">Saison</div>
-          <div class="text-[14px] font-bold text-wh-text tracking-[-0.01em]"><span class="ph">[saison]</span></div>
+          <div class="text-[14px] font-bold text-gray-600 tracking-[-0.01em]"><span class="ph" data-field="expedition.start_month">expedition.start_month</span></div>
         </div>
       </div>
       <div class="flex items-center gap-2 pr-6 mr-6 border-r border-black/10">
         <span class="text-[15px]">⏱️</span>
         <div>
           <div class="text-[9px] tracking-[0.12em] uppercase text-wh-muted font-mono mb-px">Durée</div>
-          <div class="text-[14px] font-bold text-wh-text tracking-[-0.01em]"><span class="ph">[nuits]</span></div>
+          <div class="text-[14px] font-bold text-gray-600 tracking-[-0.01em]"><span class="ph" data-field="expedition.duration_in_days">expedition.duration_in_days</span></div>
         </div>
       </div>
       <div class="flex items-center gap-2 pr-6 mr-6 border-r border-black/10">
         <span class="text-[15px]">📶</span>
         <div>
           <div class="text-[9px] tracking-[0.12em] uppercase text-wh-muted font-mono mb-px">Niveau</div>
-          <div class="text-[14px] font-bold text-wh-text tracking-[-0.01em]"><span class="ph">[niveau]</span></div>
+          <div class="text-[14px] font-bold text-gray-600 tracking-[-0.01em]"><span class="ph" data-field="expedition.level">expedition.level</span></div>
         </div>
       </div>
       <div class="flex items-center gap-2">
         <span class="text-[15px]">🌿</span>
         <div>
           <div class="text-[9px] tracking-[0.12em] uppercase text-wh-muted font-mono mb-px">Note éco</div>
-          <div class="text-[14px] font-bold text-wh-text tracking-[-0.01em]"><span class="ph">[eco_note]</span></div>
+          <div class="text-[14px] font-bold text-gray-600 tracking-[-0.01em]"><span class="ph" data-field="expedition.ecological_impact">expedition.ecological_impact</span>/5</div>
         </div>
       </div>
     </div>
@@ -196,7 +196,7 @@
         </div>
         <div>
           <h4 class="text-[13px] font-semibold mb-1 text-wh-text">L'effort physique</h4>
-          <p class="text-[13px] text-wh-muted leading-[1.6]"><span class="ph">[expect_activite]</span> — remplacé par le contenu spécifique à chaque expédition selon le niveau requis.</p>
+          <p class="text-[13px] text-wh-muted leading-[1.6]"><span class="ph" data-field="expedition.descriptions.1.body">expedition.descriptions.0.body</span></p>
         </div>
       </div>
       <div class="bg-white border border-black/10 rounded-xl p-6 flex gap-4 items-start hover:border-black/20 transition-all duration-200">
@@ -205,7 +205,7 @@
         </div>
         <div>
           <h4 class="text-[13px] font-semibold mb-1 text-wh-text">Les endroits</h4>
-          <p class="text-[13px] text-wh-muted leading-[1.6]"><span class="ph">[description]</span>— remplacé par la PV spécifique à chaque expédition selon les forces de l'endroit spécifique.</p>
+          <p class="text-[13px] text-wh-muted leading-[1.6]"><span class="ph" data-field="expedition.descriptions.0.body">expedition.descriptions.1.body</span></p>
         </div>
       </div>
       <div class="bg-white border border-black/10 rounded-xl p-6 flex gap-4 items-start hover:border-black/20 transition-all duration-200">
@@ -214,7 +214,7 @@
         </div>
         <div>
           <h4 class="text-[13px] font-semibold mb-1 text-wh-text">L'activité</h4>
-          <p class="text-[13px] text-wh-muted leading-[1.6]"><span class="ph">[expect_activite]</span>— remplacé par le contenu PV spécifique à chaque expédition selon les forces de l'activité'.</p>
+          <p class="text-[13px] text-wh-muted leading-[1.6]"><span class="ph" data-field="expedition.descriptions.2.body">expedition.descriptions.2.body</span></p>
         </div>
       </div>
       <div class="bg-white border border-black/10 rounded-xl p-6 flex gap-4 items-start hover:border-black/20 transition-all duration-200">
@@ -318,9 +318,9 @@
       <div class="bg-white/[0.05] border border-white/[0.08] rounded-[14px] overflow-hidden hover:-translate-y-1 hover:bg-white/[0.08] transition-all duration-200">
         <img class="w-full aspect-square object-cover object-top block saturate-[0.95] brightness-100" src="images/img-04.jpg" alt="Guide 1">
         <div class="p-[16px]">
-          <div class="font-display text-[16px] font-bold tracking-[-0.01em] text-white mb-1"><span class="ph">[guide_1_nom]</span></div>
-          <div class="font-mono text-[9px] tracking-[0.12em] text-wh-orange uppercase mb-2.5"><span class="ph">[guide_1_titre]</span></div>
-          <div class="text-[12px] text-white/50 leading-[1.6]"><strong class="text-white/80 font-medium">Son conseil :</strong> <span class="ph">[guide_1_conseil]</span></div>
+          <div class="font-display text-[16px] font-bold tracking-[-0.01em] text-white mb-1"><span class="ph" data-field="expedition.guides.0.full_name">expedition.guides.0.full_name</span></div>
+          <div class="font-mono text-[9px] tracking-[0.12em] text-wh-orange uppercase mb-2.5"><span class="ph" data-field="expedition.guides.0.title">expedition.guides.0.title</span></div>
+          <div class="text-[12px] text-white/50 leading-[1.6]"><strong class="text-white/80 font-medium">Qui je suis ?</strong> <span class="ph" data-field="expedition.guides.0.description">expedition.guides.0.description</span></div>
         </div>
       </div>
     </div>
@@ -344,22 +344,22 @@
         <div class="font-mono text-[9px] tracking-[0.16em] uppercase text-wh-muted mb-2.5">📍 Point de rendez-vous</div>
         <div class="flex items-center gap-2.5 mb-1.5 text-[14px]">
           <span class="text-wh-orange text-[16px]">📍</span>
-          <span class="text-wh-text font-medium"><span class="ph">[rdv_lieu]</span></span>
+          <span class="text-wh-text font-medium"><span class="ph" data-field="expedition.departure_place">expedition.departure_place</span></span>
         </div>
         <div class="flex items-center gap-2.5 text-[14px]">
           <span class="text-wh-orange text-[16px]">🕐</span>
-          <span class="text-wh-text font-medium"><span class="ph">[rdv_heure]</span></span>
+          <span class="text-wh-text font-medium"><span class="ph" data-field="expedition.departure_time">expedition.departure_time</span></span>
         </div>
       </div>
       <div class="border-[1.5px] border-black/10 rounded-xl py-5 px-6 bg-white">
         <div class="font-mono text-[9px] tracking-[0.16em] uppercase text-wh-muted mb-2.5">🏁 Point de fin</div>
         <div class="flex items-center gap-2.5 mb-1.5 text-[14px]">
           <span class="text-wh-orange text-[16px]">🏁</span>
-          <span class="text-wh-text font-medium"><span class="ph">[fin_lieu]</span></span>
+          <span class="text-wh-text font-medium"><span class="ph" data-field="expedition.arrival_place">expedition.arrival_place</span></span>
         </div>
         <div class="flex items-center gap-2.5 text-[14px]">
           <span class="text-wh-orange text-[16px]">🕐</span>
-          <span class="text-wh-text font-medium"><span class="ph">[fin_heure]</span></span>
+          <span class="text-wh-text font-medium"><span class="ph" data-field="expedition.arrival_time">expedition.arrival_time</span></span>
         </div>
       </div>
       <div class="col-span-2 bg-wh-orange/[0.14] border border-wh-orange/25 rounded-lg py-3 px-4 text-[13px] text-wh-text flex gap-2 items-center">
@@ -379,20 +379,20 @@
           <div class="py-[22px] px-6">
             <div class="flex items-baseline gap-3 mb-1.5">
               <span class="font-mono text-[10px] tracking-[0.14em] text-wh-orange uppercase font-bold">Jour 1</span>
-              <span class="font-display text-[17px] font-semibold tracking-[-0.01em] text-wh-text"><span class="ph">[jour_1_titre]</span></span>
+              <span class="font-display text-[17px] font-semibold tracking-[-0.01em] text-wh-text"><span class="ph" data-field="expedition.days.0.title">expedition.days.0.title</span></span>
             </div>
             <div class="flex gap-4 mb-2.5 flex-wrap">
-              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">📏</span> <span class="ph">[jour_1_distance]</span></div>
-              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⛰️</span> <span class="ph">[jour_1_denivele]</span></div>
-              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⏱️</span> <span class="ph">[jour_1_duree]</span></div>
+              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">📏</span> <span class="ph" data-field="expedition.days.0.details.distance">expedition.days.0.details.distance</span></div>
+              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⛰️</span> <span class="ph" data-field="expedition.days.0.details.denivele">expedition.days.0.details.denivele</span></div>
+              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⏱️</span> <span class="ph" data-field="expedition.days.0.details.duree">expedition.days.0.details.duree</span></div>
             </div>
-            <p class="text-[13px] text-wh-muted leading-[1.65] mb-3.5"><span class="ph">[jour_1_description]</span></p>
+            <p class="text-[13px] text-wh-muted leading-[1.65] mb-3.5"><span class="ph" data-field="expedition.days.0.body">expedition.days.0.body</span></p>
             <div class="flex items-center gap-2 py-2.5 px-[14px] bg-wh-sand rounded-lg text-[12px]">
               <span>🏠</span>
-              <span class="font-semibold text-wh-text"><span class="ph">[jour_1_hebergement]</span></span>
+              <span class="font-semibold text-wh-text"><span class="ph" data-field="expedition.days.0.details.hebergement">expedition.days.0.details.hebergement</span></span>
               <div class="flex gap-1.5 ml-auto">
-                <span class="bg-white border border-black/10 rounded px-[7px] py-[2px] text-[10px] text-wh-muted font-mono"><span class="ph">[jour_1_reseau]</span></span>
-                <span class="bg-white border border-black/10 rounded px-[7px] py-[2px] text-[10px] text-wh-muted font-mono"><span class="ph">[jour_1_type_heberg]</span></span>
+                <span class="bg-white border border-black/10 rounded px-[7px] py-[2px] text-[10px] text-wh-muted font-mono"><span class="ph" data-field="expedition.days.0.details.reseau">expedition.days.0.details.reseau</span></span>
+                <span class="bg-white border border-black/10 rounded px-[7px] py-[2px] text-[10px] text-wh-muted font-mono"><span class="ph" data-field="expedition.days.0.details.type_hebergement">expedition.days.0.details.type_hebergement</span></span>
               </div>
             </div>
           </div>
@@ -411,20 +411,20 @@
           <div class="py-[22px] px-6">
             <div class="flex items-baseline gap-3 mb-1.5">
               <span class="font-mono text-[10px] tracking-[0.14em] text-wh-orange uppercase font-bold">Jour 2</span>
-              <span class="font-display text-[17px] font-semibold tracking-[-0.01em] text-wh-text"><span class="ph">[jour_2_titre]</span></span>
+              <span class="font-display text-[17px] font-semibold tracking-[-0.01em] text-wh-text"><span class="ph" data-field="expedition.days.1.title">expedition.days.1.title</span></span>
             </div>
             <div class="flex gap-4 mb-2.5 flex-wrap">
-              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">📏</span> <span class="ph">[jour_2_distance]</span></div>
-              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⛰️</span> <span class="ph">[jour_2_denivele]</span></div>
-              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⏱️</span> <span class="ph">[jour_2_duree]</span></div>
+              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">📏</span> <span class="ph" data-field="expedition.days.1.details.distance">expedition.days.1.details.distance</span></div>
+              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⛰️</span> <span class="ph" data-field="expedition.days.1.details.denivele">expedition.days.1.details.denivele</span></div>
+              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⏱️</span> <span class="ph" data-field="expedition.days.1.details.duree">expedition.days.1.details.duree</span></div>
             </div>
-            <p class="text-[13px] text-wh-muted leading-[1.65] mb-3.5"><span class="ph">[jour_2_description]</span></p>
+            <p class="text-[13px] text-wh-muted leading-[1.65] mb-3.5"><span class="ph" data-field="expedition.days.1.body">expedition.days.1.body</span></p>
             <div class="flex items-center gap-2 py-2.5 px-[14px] bg-wh-sand rounded-lg text-[12px]">
               <span>🏠</span>
-              <span class="font-semibold text-wh-text"><span class="ph">[jour_2_hebergement]</span></span>
+              <span class="font-semibold text-wh-text"><span class="ph" data-field="expedition.days.1.details.hebergement">expedition.days.1.details.hebergement</span></span>
               <div class="flex gap-1.5 ml-auto">
-                <span class="bg-white border border-black/10 rounded px-[7px] py-[2px] text-[10px] text-wh-muted font-mono"><span class="ph">[jour_2_reseau]</span></span>
-                <span class="bg-white border border-black/10 rounded px-[7px] py-[2px] text-[10px] text-wh-muted font-mono"><span class="ph">[jour_2_type_heberg]</span></span>
+                <span class="bg-white border border-black/10 rounded px-[7px] py-[2px] text-[10px] text-wh-muted font-mono"><span class="ph" data-field="expedition.days.1.details.reseau">expedition.days.1.details.reseau</span></span>
+                <span class="bg-white border border-black/10 rounded px-[7px] py-[2px] text-[10px] text-wh-muted font-mono"><span class="ph" data-field="expedition.days.1.details.type_hebergement">expedition.days.1.details.type_hebergement</span></span>
               </div>
             </div>
           </div>
@@ -443,18 +443,18 @@
           <div class="py-[22px] px-6">
             <div class="flex items-baseline gap-3 mb-1.5">
               <span class="font-mono text-[10px] tracking-[0.14em] text-wh-orange uppercase font-bold">Jour 3</span>
-              <span class="font-display text-[17px] font-semibold tracking-[-0.01em] text-wh-text"><span class="ph">[jour_3_titre]</span></span>
+              <span class="font-display text-[17px] font-semibold tracking-[-0.01em] text-wh-text"><span class="ph" data-field="expedition.days.2.title">expedition.days.2.title</span></span>
             </div>
             <div class="flex gap-4 mb-2.5 flex-wrap">
-              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">📏</span> <span class="ph">[jour_3_distance]</span></div>
-              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⛰️</span> <span class="ph">[jour_3_denivele]</span></div>
-              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⏱️</span> <span class="ph">[jour_3_duree]</span></div>
+              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">📏</span> <span class="ph" data-field="expedition.days.2.details.distance">expedition.days.2.details.distance</span></div>
+              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⛰️</span> <span class="ph" data-field="expedition.days.2.details.denivele">expedition.days.2.details.denivele</span></div>
+              <div class="flex items-center gap-[5px] text-[11px] text-wh-muted font-mono"><span class="text-wh-orange text-[12px]">⏱️</span> <span class="ph" data-field="expedition.days.2.details.duree">expedition.days.2.details.duree</span></div>
             </div>
-            <p class="text-[13px] text-wh-muted leading-[1.65] mb-3.5"><span class="ph">[jour_3_description]</span></p>
+            <p class="text-[13px] text-wh-muted leading-[1.65] mb-3.5"><span class="ph" data-field="expedition.days.2.body">expedition.days.2.body</span></p>
             <div class="flex items-center gap-2 py-2.5 px-[14px] bg-wh-orange/10 rounded-lg text-[12px] border border-wh-orange/20">
               <span>🏔️</span>
-              <span class="font-semibold text-wh-text"><span class="ph">[jour_3_sommet]</span></span>
-              <span class="ml-auto font-mono text-[10px] text-wh-orange"><span class="ph">[jour_3_note]</span></span>
+              <span class="font-semibold text-wh-text"><span class="ph" data-field="expedition.days.2.details.sommet">expedition.days.2.details.sommet</span></span>
+              <span class="ml-auto font-mono text-[10px] text-wh-orange"><span class="ph" data-field="expedition.days.2.details.note_sommet">expedition.days.2.details.note_sommet</span></span>
             </div>
           </div>
           <div class="relative overflow-hidden">
@@ -474,17 +474,17 @@
     <div class="grid grid-cols-3 gap-4 mb-8">
       <div class="bg-wh-cream border border-black/10 rounded-xl py-[22px] px-5">
         <h4 class="text-[13px] font-semibold mb-2 flex items-center gap-2">🚗 En voiture</h4>
-        <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph">[transport_voiture_detail]</span></p>
+        <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph" data-field="expedition.transportations.voiture.body">expedition.transportations.voiture.body</span></p>
         <a href="#" class="text-wh-orange no-underline text-[12px] font-mono inline-block mt-2 hover:underline">Ouvrir dans Maps →</a>
       </div>
       <div class="bg-wh-cream border border-black/10 rounded-xl py-[22px] px-5">
         <h4 class="text-[13px] font-semibold mb-2 flex items-center gap-2">🚆 En train</h4>
-        <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph">[transport_train_detail]</span></p>
+        <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph" data-field="expedition.transportations.train.body">expedition.transportations.train.body</span></p>
         <a href="#" class="text-wh-orange no-underline text-[12px] font-mono inline-block mt-2 hover:underline">Voir les horaires →</a>
       </div>
       <div class="bg-wh-cream border border-black/10 rounded-xl py-[22px] px-5">
         <h4 class="text-[13px] font-semibold mb-2 flex items-center gap-2">✈️ En avion</h4>
-        <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph">[transport_avion_detail]</span></p>
+        <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph" data-field="expedition.transportations.avion.body">expedition.transportations.avion.body</span></p>
         <a href="#" class="text-wh-orange no-underline text-[12px] font-mono inline-block mt-2 hover:underline">Voir les vols →</a>
       </div>
     </div>
@@ -536,9 +536,9 @@
           <span class="font-mono text-[9px] tracking-[0.1em] uppercase px-2 py-[3px] rounded bg-[#e6f4ea] text-[#2d6a4f] ml-auto">Inclus</span>
         </h4>
         <ul class="list-none text-[13px] text-wh-muted">
-          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph">[inclus_1]</span></li>
-          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph">[inclus_2]</span></li>
-          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph">[inclus_3]</span></li>
+          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph" data-field="expedition.price_includes.0.body">expedition.price_includes.0.body</span></li>
+          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph" data-field="expedition.price_includes.1.body">expedition.price_includes.1.body</span></li>
+          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph" data-field="expedition.price_includes.2.body">expedition.price_includes.2.body</span></li>
         </ul>
       </div>
       <div class="bg-white rounded-xl py-[22px] px-6 border border-black/10">
@@ -547,9 +547,9 @@
           <span class="font-mono text-[9px] tracking-[0.1em] uppercase px-2 py-[3px] rounded bg-[#fde8d8] text-[#b5451b] ml-auto">Non inclus</span>
         </h4>
         <ul class="list-none text-[13px] text-wh-muted">
-          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph">[non_inclus_1]</span></li>
-          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph">[non_inclus_2]</span></li>
-          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph">[non_inclus_3]</span></li>
+          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph" data-field="expedition.price_excludes.0.body">expedition.price_excludes.0.body</span></li>
+          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph" data-field="expedition.price_excludes.1.body">expedition.price_excludes.1.body</span></li>
+          <li class="py-[5px] border-b border-black/10 flex items-center gap-2 last:border-0 before:content-['—'] before:text-wh-orange before:text-[12px] before:shrink-0"><span class="ph" data-field="expedition.price_excludes.2.body">expedition.price_excludes.2.body</span></li>
         </ul>
       </div>
     </div>
@@ -578,11 +578,11 @@
         <button
           id="assurance-btn"
           class="mt-1 text-wh-orange text-[13px] font-mono no-underline hover:underline bg-transparent border-none cursor-pointer p-0 font-[inherit]"
-          data-expedition="[expedition_titre]"
-          data-date-start="[date_debut]"
-          data-date-end="[date_fin]"
-          data-price="[prix_assurance]"
-          data-user-name="[prenom_participant]"
+          data-expedition="expedition.title"
+          data-date-start="booking.date_debut"
+          data-date-end="booking.date_fin"
+          data-price="booking.prix_total"
+          data-user-name="booking.participant.first_name"
           onclick="openAssuranceModal(this)"
         >
           Souscrire via Wildhartt →
@@ -591,7 +591,7 @@
       <div class="pratique-card border border-black/10 rounded-xl p-6">
         <h4 class="text-[13px] font-semibold mb-3 flex items-center gap-2">🗺️ Zone &amp; réseau</h4>
         <p class="text-[13px] text-wh-muted leading-[1.7] mb-4">
-          <span class="ph">[zone_reseau_detail]</span>
+          <span class="ph" data-field="expedition.faq_items.reseau.answer">expedition.faq_items.reseau.answer</span>
         </p>
         <p class="text-[13px] text-wh-muted leading-[1.7]">Télécharge la carte hors-ligne de la zone avant le départ.</p>
       </div>
@@ -636,15 +636,19 @@
       En cas de doute, contacte-nous avant de partir.
     </p>
     <div class="flex gap-2 mb-7 items-center">
-      <div class="flex-1 h-2 rounded-full bg-wh-orange"></div>
-      <div class="flex-1 h-2 rounded-full bg-wh-orange"></div>
-      <div class="flex-1 h-2 rounded-full bg-gradient-to-r from-wh-orange-lt to-black/10"></div>
-      <div class="flex-1 h-2 rounded-full bg-black/10"></div>
+      <div class="flex-1 h-2 rounded-full bg-black/10" data-level-seg="1"></div>
+      <div class="flex-1 h-2 rounded-full bg-black/10" data-level-seg="2"></div>
+      <div class="flex-1 h-2 rounded-full bg-black/10" data-level-seg="3"></div>
+      <div class="flex-1 h-2 rounded-full bg-black/10" data-level-seg="4"></div>
     </div>
     <div class="flex justify-between font-mono text-[9px] tracking-[0.1em] text-wh-muted mb-6 uppercase">
-      <span>Découverte</span><span>Intermédiaire</span><span>Confirmé</span><span>Expert</span>
+      <span data-level-label="decouverte">Découverte</span>
+      <span data-level-label="intermediaire">Intermédiaire</span>
+      <span data-level-label="confirme">Confirmé</span>
+      <span data-level-label="expert">Expert</span>
     </div>
-    <div <span class="ph"> level description</span> <span class="dev-note" style="margin-top:16px;">// Description du niveau de l'expédition</span>
+    <p class="text-[13px] text-wh-muted leading-[1.7]"><span class="ph" data-field="expedition.level_description">expedition.level_description</span></p>
+    <span class="dev-note" style="margin-top:16px;">// Description du niveau de l'expédition</span>
   </section>
 
   <!-- =============================================
@@ -669,9 +673,9 @@
     <div class="bg-white/[0.04] border border-white/[0.06] rounded-[10px] py-4 px-5 mb-6">
       <h4 class="font-mono text-[9px] tracking-[0.16em] uppercase text-wh-orange mb-3">✅ Fourni par Wildhartt</h4>
       <div class="flex flex-wrap gap-2">
-        <span class="wildhartt-tag bg-white/[0.07] border border-white/[0.08] rounded-full py-[5px] px-[14px] text-[12px] text-white/65 flex items-center gap-1.5 before:content-['✓'] before:text-wh-orange before:text-[10px] before:shrink-0"><span class="ph">[fourni_1]</span></span>
-        <span class="wildhartt-tag bg-white/[0.07] border border-white/[0.08] rounded-full py-[5px] px-[14px] text-[12px] text-white/65 flex items-center gap-1.5 before:content-['✓'] before:text-wh-orange before:text-[10px] before:shrink-0"><span class="ph">[fourni_2]</span></span>
-        <span class="wildhartt-tag bg-white/[0.07] border border-white/[0.08] rounded-full py-[5px] px-[14px] text-[12px] text-white/65 flex items-center gap-1.5 before:content-['✓'] before:text-wh-orange before:text-[10px] before:shrink-0"><span class="ph">[fourni_3]</span></span>
+        <span class="wildhartt-tag bg-white/[0.07] border border-white/[0.08] rounded-full py-[5px] px-[14px] text-[12px] text-white/65 flex items-center gap-1.5 before:content-['✓'] before:text-wh-orange before:text-[10px] before:shrink-0"><span class="ph" data-field="expedition.packlist_fourni.0">expedition.packlist_fourni.0</span></span>
+        <span class="wildhartt-tag bg-white/[0.07] border border-white/[0.08] rounded-full py-[5px] px-[14px] text-[12px] text-white/65 flex items-center gap-1.5 before:content-['✓'] before:text-wh-orange before:text-[10px] before:shrink-0"><span class="ph" data-field="expedition.packlist_fourni.1">expedition.packlist_fourni.1</span></span>
+        <span class="wildhartt-tag bg-white/[0.07] border border-white/[0.08] rounded-full py-[5px] px-[14px] text-[12px] text-white/65 flex items-center gap-1.5 before:content-['✓'] before:text-wh-orange before:text-[10px] before:shrink-0"><span class="ph" data-field="expedition.packlist_fourni.2">expedition.packlist_fourni.2</span></span>
         <span class="dev-note" style="width:100%;">// boucle sur expedition.packlist_fourni</span>
       </div>
     </div>
@@ -685,23 +689,23 @@
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_oblig_1]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_obligatoire.0">expedition.packlist_obligatoire.0</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_oblig_2]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_obligatoire.1">expedition.packlist_obligatoire.1</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_oblig_3]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_obligatoire.2">expedition.packlist_obligatoire.2</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_oblig_4]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_obligatoire.3">expedition.packlist_obligatoire.3</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_oblig_5]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_obligatoire.4">expedition.packlist_obligatoire.4</span></span>
         </div>
         <span class="dev-note">// boucle expedition.packlist_obligatoire</span>
       </div>
@@ -712,23 +716,23 @@
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_must_1]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_must_have.0">expedition.packlist_must_have.0</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_must_2]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_must_have.1">expedition.packlist_must_have.1</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_must_3]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_must_have.2">expedition.packlist_must_have.2</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_must_4]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_must_have.3">expedition.packlist_must_have.3</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_must_5]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_must_have.4">expedition.packlist_must_have.4</span></span>
         </div>
         <span class="dev-note">// boucle expedition.packlist_must_have</span>
       </div>
@@ -739,19 +743,19 @@
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_nice_1]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_nice_to_have.0">expedition.packlist_nice_to_have.0</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_nice_2]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_nice_to_have.1">expedition.packlist_nice_to_have.1</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_nice_3]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_nice_to_have.2">expedition.packlist_nice_to_have.2</span></span>
         </div>
         <div class="pack-item group flex items-center gap-2.5 py-2 border-b border-white/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
           <div class="pack-checkbox w-4 h-4 border-[1.5px] border-white/20 rounded-[4px] shrink-0 flex items-center justify-center transition-all duration-150 group-[.checked]:bg-wh-orange group-[.checked]:border-wh-orange"><span class="opacity-0 group-[.checked]:opacity-100 text-[10px] text-white leading-none font-bold">✓</span></div>
-          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph">[packlist_nice_4]</span></span>
+          <span class="text-[13px] text-white/70 transition-colors duration-150 group-[.checked]:line-through group-[.checked]:text-white/30"><span class="ph" data-field="expedition.packlist_nice_to_have.3">expedition.packlist_nice_to_have.3</span></span>
         </div>
         <span class="dev-note">// boucle expedition.packlist_nice_to_have</span>
       </div>
@@ -788,7 +792,7 @@
       </div>
       <div class="vsp-card bg-white border border-black/10 rounded-xl p-6">
         <h4 class="text-[14px] font-semibold mb-3 flex items-center gap-2">🍴 Le petit tips Wildhartt</h4>
-        <p class="text-[13px] text-wh-muted leading-[1.7]"><span class="ph">[tips_wildhartt]</span></p> <!--Champ libre sur la page expédition : spécialités locales, endroits à voir, à goûter…-->
+        <p class="text-[13px] text-wh-muted leading-[1.7]"><span class="ph" data-field="expedition.tips_wildhartt">expedition.tips_wildhartt</span></p> <!--Champ libre sur la page expédition : spécialités locales, endroits à voir, à goûter…-->
 
       </div>
     </div>
@@ -975,14 +979,14 @@
         <div class="absolute inset-0 p-5 flex flex-col justify-between bg-gradient-to-t from-[rgba(30,40,39,0.92)] via-transparent to-transparent">
           <span class="font-mono text-[10px] tracking-[0.1em] text-white/60 bg-black/30 rounded-[20px] px-2.5 py-1 inline-block self-start" style="backdrop-filter:blur(4px);">3 jours · Niveau supérieur</span>
           <div>
-            <div class="text-[18px] font-extrabold tracking-[-0.02em] leading-[1.2] text-white mb-3"><span class="ph">[expe_progression_titre]</span></div>
+            <div class="text-[18px] font-extrabold tracking-[-0.02em] leading-[1.2] text-white mb-3"><span class="ph" data-field="recommendations.progression.title">recommendations.progression.title</span></div>
             <div class="flex items-center gap-2 flex-wrap">
               <div class="flex gap-[5px] items-center">
                 <div class="w-[9px] h-[9px] rounded-full bg-white"></div>
                 <div class="w-[9px] h-[9px] rounded-full bg-white"></div>
                 <div class="w-[7px] h-[7px] rounded-full bg-white/35"></div>
               </div>
-              <span class="ml-auto bg-wh-orange text-white text-[13px] font-extrabold tracking-[-0.01em] py-2.5 px-[18px] rounded-[30px] inline-flex items-center gap-1.5">À partir de <span class="ph">[prix]</span>€ →</span>
+              <span class="ml-auto bg-wh-orange text-white text-[13px] font-extrabold tracking-[-0.01em] py-2.5 px-[18px] rounded-[30px] inline-flex items-center gap-1.5">À partir de <span class="ph" data-field="recommendations.progression.price_from">recommendations.progression.price_from</span>€ →</span>
             </div>
           </div>
         </div>
@@ -1003,8 +1007,8 @@
           <div class="absolute inset-0 p-5 flex flex-col justify-between bg-gradient-to-t from-[rgba(30,40,39,0.92)] via-transparent to-transparent">
             <span class="font-mono text-[10px] tracking-[0.1em] text-white/60 bg-black/30 rounded-[20px] px-2.5 py-1 inline-block self-start" style="backdrop-filter:blur(4px);">Autre discipline</span>
             <div>
-              <div class="text-[16px] font-extrabold tracking-[-0.02em] leading-[1.2] text-white mb-2"><span class="ph">[expe_decouverte_1_titre]</span></div>
-              <span class="bg-wh-orange text-white text-[12px] font-extrabold py-2 px-4 rounded-[30px] inline-flex">À partir de <span class="ph ml-1">[prix]</span>€</span>
+              <div class="text-[16px] font-extrabold tracking-[-0.02em] leading-[1.2] text-white mb-2"><span class="ph" data-field="recommendations.decouverte.0.title">recommendations.decouverte.0.title</span></div>
+              <span class="bg-wh-orange text-white text-[12px] font-extrabold py-2 px-4 rounded-[30px] inline-flex">À partir de <span class="ph ml-1" data-field="recommendations.decouverte.0.price_from">recommendations.decouverte.0.price_from</span>€</span>
             </div>
           </div>
         </div>
@@ -1014,8 +1018,8 @@
           <div class="absolute inset-0 p-5 flex flex-col justify-between bg-gradient-to-t from-[rgba(30,40,39,0.92)] via-transparent to-transparent">
             <span class="font-mono text-[10px] tracking-[0.1em] text-white/60 bg-black/30 rounded-[20px] px-2.5 py-1 inline-block self-start" style="backdrop-filter:blur(4px);">Autre pays</span>
             <div>
-              <div class="text-[16px] font-extrabold tracking-[-0.02em] leading-[1.2] text-white mb-2"><span class="ph">[expe_decouverte_2_titre]</span></div>
-              <span class="bg-wh-orange text-white text-[12px] font-extrabold py-2 px-4 rounded-[30px] inline-flex">À partir de <span class="ph ml-1">[prix]</span>€</span>
+              <div class="text-[16px] font-extrabold tracking-[-0.02em] leading-[1.2] text-white mb-2"><span class="ph" data-field="recommendations.decouverte.1.title">recommendations.decouverte.1.title</span></div>
+              <span class="bg-wh-orange text-white text-[12px] font-extrabold py-2 px-4 rounded-[30px] inline-flex">À partir de <span class="ph ml-1" data-field="recommendations.decouverte.1.price_from">recommendations.decouverte.1.price_from</span>€</span>
             </div>
           </div>
         </div>
@@ -1033,10 +1037,10 @@
         <div class="absolute inset-0 overflow-hidden"><img src="images/img-17.jpg" alt="" class="w-full h-full object-cover saturate-[0.8] brightness-[0.7] block"></div>
         <div class="absolute top-4 right-4 w-7 h-7 rounded-full overflow-hidden border-2 border-white/30 bg-black/20 flex items-center justify-center text-[18px]" style="backdrop-filter:blur(4px);">🇫🇷</div>
         <div class="absolute inset-0 p-5 flex flex-col justify-between bg-gradient-to-t from-[rgba(30,40,39,0.92)] via-transparent to-transparent">
-          <span class="font-mono text-[10px] tracking-[0.1em] text-white/60 bg-black/30 rounded-[20px] px-2.5 py-1 inline-block self-start" style="backdrop-filter:blur(4px);">Prochaine dispo · <span class="ph">[date_prochaine]</span></span>
+          <span class="font-mono text-[10px] tracking-[0.1em] text-white/60 bg-black/30 rounded-[20px] px-2.5 py-1 inline-block self-start" style="backdrop-filter:blur(4px);">Prochaine dispo · <span class="ph" data-field="recommendations.soon.next_departure">recommendations.soon.next_departure</span></span>
           <div>
-            <div class="text-[18px] font-extrabold tracking-[-0.02em] leading-[1.2] text-white mb-3"><span class="ph">[expe_soon_titre]</span></div>
-            <span class="bg-wh-orange text-white text-[13px] font-extrabold tracking-[-0.01em] py-2.5 px-[18px] rounded-[30px] inline-flex">À partir de <span class="ph ml-1">[prix]</span>€ →</span>
+            <div class="text-[18px] font-extrabold tracking-[-0.02em] leading-[1.2] text-white mb-3"><span class="ph" data-field="recommendations.soon.title">recommendations.soon.title</span></div>
+            <span class="bg-wh-orange text-white text-[13px] font-extrabold tracking-[-0.01em] py-2.5 px-[18px] rounded-[30px] inline-flex">À partir de <span class="ph ml-1" data-field="recommendations.soon.price_from">recommendations.soon.price_from</span>€ →</span>
           </div>
         </div>
       </div>
@@ -1048,7 +1052,7 @@
        BACK COVER
        ============================================= -->
   <section id="back-cover" class="relative min-h-[480px] bg-wh-dark-bg flex flex-col items-center justify-center text-center py-[72px] px-12 overflow-hidden scroll-mt-11">
-    <div class="absolute inset-0 bg-[url('images/img-02.jpg')] bg-cover bg-center opacity-35 saturate-50"></div>
+    <div class="absolute inset-0 bg-[url('images/img-02.jpg')] bg-cover bg-center opacity-100 saturate-100"></div>
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,14,14,0.3)_0%,rgba(14,14,14,0.85)_100%)]"></div>
     <div class="relative z-[2]">
       <div class="font-display text-[clamp(52px,9vw,88px)] font-extrabold tracking-[-0.04em] leading-none text-white mb-3">
@@ -1142,6 +1146,53 @@
 </div>
 
 <script src="js/main.js"></script>
+<script>
+/* ══════════════════════════════════════════════════════════
+   NIVEAU REQUIS — barre dynamique selon expedition.level
+   Valeurs attendues : decouverte | intermediaire | confirme | expert
+   En Django : injecter {{ expedition.level }} dans le span ci-dessous.
+   ══════════════════════════════════════════════════════════ */
+(function initNiveauBar() {
+  const LEVEL_MAP = {
+    decouverte:    1,
+    intermediaire: 2,
+    confirme:      3,
+    expert:        4,
+  };
+
+  // Lit la valeur du span data-field="expedition.level" dans la meta bar
+  const levelSpan = document.querySelector('[data-field="expedition.level"]');
+  if (!levelSpan) return;
+
+  const rawValue = levelSpan.textContent.trim().toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // retire les accents
+    .replace(/\s+/g, '');                              // retire les espaces
+
+  const activeIndex = LEVEL_MAP[rawValue];
+  if (!activeIndex) return;
+
+  // Colorie les segments
+  document.querySelectorAll('[data-level-seg]').forEach(seg => {
+    const segIndex = parseInt(seg.dataset.levelSeg, 10);
+    if (segIndex < activeIndex) {
+      // Segments pleins avant le niveau actif
+      seg.className = seg.className.replace('bg-black/10', 'bg-wh-orange');
+    } else if (segIndex === activeIndex) {
+      // Segment actif : plein orange
+      seg.className = seg.className.replace('bg-black/10', 'bg-wh-orange');
+    }
+    // Segments après : restent gris (bg-black/10 inchangé)
+  });
+
+  // Met le label actif en orange
+  document.querySelectorAll('[data-level-label]').forEach(label => {
+    if (label.dataset.levelLabel === rawValue) {
+      label.classList.add('text-wh-orange', 'font-bold');
+      label.classList.remove('text-wh-muted');
+    }
+  });
+})();
+</script>
 <script>
 /* ══════════════════════════════════════════════════════════
    MÉTÉO — Open-Meteo (gratuit, pas de clé API)

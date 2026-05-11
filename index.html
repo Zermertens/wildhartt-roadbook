@@ -44,6 +44,65 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style type="text/tailwindcss">
+  /* ─── Prevent horizontal scroll ─── */
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* ─── Mobile responsive ─── */
+  @media (max-width: 639px) {
+    /* Padding uniforme de toutes les sections */
+    #expect, #meteo, #guide, #itineraire, #transport, #repas,
+    #pratique, #niveau, #packlist, #viesurplace, #lexique,
+    #checklist, #social .social-inner, #histoire, #autres-expes, #back-cover {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+    #cover {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+    /* Teaser : padding sur le div interne */
+    #teaser > div {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+    /* Social section : 1 colonne */
+    .social-grid {
+      grid-template-columns: 1fr !important;
+      gap: 2rem;
+    }
+    .social-photo-col {
+      display: flex;
+      justify-content: center;
+    }
+    .social-polaroid {
+      max-width: 260px;
+    }
+    /* Bloc contact : empiler les colonnes */
+    #pratique .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    /* Bouton copiable partenaire : pleine largeur sur mobile */
+    #packlist .partner-code {
+      width: 100%;
+      text-align: center;
+    }
+    /* Navigation : réduire le logo */
+    .progress-nav img { height: 2rem; }
+    /* Bouton PDF : plus compact */
+    .print-btn { padding: 10px 16px; font-size: 10px; }
+    /* Tableau météo : scroll horizontal */
+    #meteo .overflow-x-auto { -webkit-overflow-scrolling: touch; }
+    /* Back cover : ajuster la taille du titre */
+    #back-cover .relative { padding-left: 0; padding-right: 0; }
+  }
+
   @layer components {
     /* Placeholder — donnée dynamique non encore injectée */
     .ph {
@@ -128,7 +187,7 @@
        TEASER
        ============================================= -->
   <section id="teaser" class="bg-wh-dark text-white relative overflow-hidden scroll-mt-11 before:absolute before:content-[''] before:-top-[60px] before:-right-[60px] before:w-[320px] before:h-[320px] before:rounded-full before:bg-wh-orange/[0.14] before:[filter:blur(80px)] before:pointer-events-none">
-    <div class="grid grid-cols-2 gap-12 items-center py-[72px] px-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 items-center py-[72px] px-12">
       <div>
         <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-wh-teal mb-1.5">Ta destination</div>
         <div class="font-display text-[clamp(24px,3.5vw,36px)] font-bold tracking-[-0.02em] leading-[1.15] mb-4 text-white">Dans quelques jours,<br>tu seras <em class="not-italic text-wh-orange">ici.</em></div>
@@ -140,7 +199,7 @@
         </p>
         <p class="text-white/65 text-[15px] leading-[1.75]">Ce roadbook est ton compagnon de préparation. Garde-le sous la main.</p>
       </div>
-      <div class="rounded-xl overflow-hidden aspect-[3/4] relative">
+      <div class="rounded-xl overflow-hidden aspect-[16/9] sm:aspect-[3/4] relative">
         <img src="images/img-03.jpg" alt="Destination" class="w-full h-full object-cover saturate-[0.85]" data-field="expedition.card_image">
         <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent pt-6 px-4 pb-4 font-mono text-[9px] tracking-[0.14em] text-white/60 uppercase">
           <span class="ph" data-field="expedition.title">expedition.title</span> · <span class="ph" data-field="expedition.country.name">expedition.country.name</span>
@@ -189,7 +248,7 @@
     <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-wh-teal mb-1.5">Prépare-toi</div>
     <div class="font-display text-[clamp(24px,3.5vw,36px)] font-bold tracking-[-0.02em] leading-[1.15] mb-8 text-wh-text">À quoi <em class="not-italic text-wh-orange">s'attendre</em></div>
 
-    <div class="grid grid-cols-2 gap-4 mb-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
       <div class="bg-white border border-black/10 rounded-xl p-6 flex gap-4 items-start hover:border-black/20 transition-all duration-200">
         <div class="w-[52px] h-[52px] rounded-[10px] bg-wh-teal/[0.12] flex items-center justify-center shrink-0 p-[6px] overflow-hidden">
           <img src="images/Picto_tous_niveaux_vert.svg" alt="Effort" class="w-full h-full block">
@@ -313,7 +372,7 @@
       "Et ça, c'est mon bureau." Tu l'entendras sûrement dire cette phrase, en regardant la vue.
       Mais il te fera découvrir bien plus que des paysages.
     </p>
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
       <!-- Guide 1 -->
       <div class="bg-white/[0.05] border border-white/[0.08] rounded-[14px] overflow-hidden hover:-translate-y-1 hover:bg-white/[0.08] transition-all duration-200">
         <img class="w-full aspect-square object-cover object-top block saturate-[0.95] brightness-100" src="images/img-04.jpg" alt="Guide 1">
@@ -339,7 +398,7 @@
     </p>
 
     <!-- RDV Box -->
-    <div class="grid grid-cols-2 gap-4 mb-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
       <div class="border-[1.5px] border-black/10 rounded-xl py-5 px-6 bg-white">
         <div class="font-mono text-[9px] tracking-[0.16em] uppercase text-wh-muted mb-2.5">📍 Point de rendez-vous</div>
         <div class="flex items-center gap-2.5 mb-1.5 text-[14px]">
@@ -375,7 +434,7 @@
         <div class="flex flex-col items-center pt-1">
           <div class="w-[18px] h-[18px] rounded-full bg-wh-teal border-[3px] border-wh-cream shadow-[0_0_0_2px_#5ea59e] shrink-0 mt-[3px]"></div>
         </div>
-        <div class="bg-white border border-black/10 rounded-[14px] overflow-hidden grid grid-cols-[1fr_120px]">
+        <div class="bg-white border border-black/10 rounded-[14px] overflow-hidden grid grid-cols-1 sm:grid-cols-[1fr_120px]">
           <div class="py-[22px] px-6">
             <div class="flex items-baseline gap-3 mb-1.5">
               <span class="font-mono text-[10px] tracking-[0.14em] text-wh-orange uppercase font-bold">Jour 1</span>
@@ -396,7 +455,7 @@
               </div>
             </div>
           </div>
-          <div class="relative overflow-hidden">
+          <div class="relative overflow-hidden order-first sm:order-none h-[200px] sm:h-auto">
             <img src="images/img-09.jpg" alt="Jour 1" class="w-full h-full object-cover saturate-[0.8]">
           </div>
         </div>
@@ -407,7 +466,7 @@
         <div class="flex flex-col items-center pt-1">
           <div class="w-[18px] h-[18px] rounded-full bg-wh-teal border-[3px] border-wh-cream shadow-[0_0_0_2px_#5ea59e] shrink-0 mt-[3px]"></div>
         </div>
-        <div class="bg-white border border-black/10 rounded-[14px] overflow-hidden grid grid-cols-[1fr_120px]">
+        <div class="bg-white border border-black/10 rounded-[14px] overflow-hidden grid grid-cols-1 sm:grid-cols-[1fr_120px]">
           <div class="py-[22px] px-6">
             <div class="flex items-baseline gap-3 mb-1.5">
               <span class="font-mono text-[10px] tracking-[0.14em] text-wh-orange uppercase font-bold">Jour 2</span>
@@ -428,7 +487,7 @@
               </div>
             </div>
           </div>
-          <div class="relative overflow-hidden">
+          <div class="relative overflow-hidden order-first sm:order-none h-[200px] sm:h-auto">
             <img src="images/img-10.jpg" alt="Jour 2" class="w-full h-full object-cover saturate-[0.8]">
           </div>
         </div>
@@ -439,7 +498,7 @@
         <div class="flex flex-col items-center pt-1">
           <div class="w-[18px] h-[18px] rounded-full bg-wh-teal border-[3px] border-wh-cream shadow-[0_0_0_2px_#5ea59e] shrink-0 mt-[3px]"></div>
         </div>
-        <div class="bg-white border border-black/10 rounded-[14px] overflow-hidden grid grid-cols-[1fr_120px]">
+        <div class="bg-white border border-black/10 rounded-[14px] overflow-hidden grid grid-cols-1 sm:grid-cols-[1fr_120px]">
           <div class="py-[22px] px-6">
             <div class="flex items-baseline gap-3 mb-1.5">
               <span class="font-mono text-[10px] tracking-[0.14em] text-wh-orange uppercase font-bold">Jour 3</span>
@@ -457,7 +516,7 @@
               <span class="ml-auto font-mono text-[10px] text-wh-orange"><span class="ph" data-field="logement.details.note_reseau">logement.details.note_reseau</span></span>
             </div>
           </div>
-          <div class="relative overflow-hidden">
+          <div class="relative overflow-hidden order-first sm:order-none h-[200px] sm:h-auto">
             <img src="images/img-09.jpg" alt="Jour 3" class="w-full h-full object-cover saturate-[0.8]">
           </div>
         </div>
@@ -471,7 +530,7 @@
   <section id="transport" class="bg-white py-[72px] px-12 scroll-mt-11">
     <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-wh-teal mb-1.5">Logistique</div>
     <div class="font-display text-[clamp(24px,3.5vw,36px)] font-bold tracking-[-0.02em] leading-[1.15] mb-8 text-wh-text">Comment <em class="not-italic text-wh-orange">venir</em></div>
-    <div class="grid grid-cols-3 gap-4 mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
       <div class="bg-wh-cream border border-black/10 rounded-xl py-[22px] px-5">
         <h4 class="text-[13px] font-semibold mb-2 flex items-center gap-2">🚗 En voiture</h4>
         <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph" data-field="expedition.transportations.voiture.body">expedition.transportations.voiture.body</span></p>
@@ -493,7 +552,7 @@
         <p class="text-[13px] text-wh-muted leading-[1.65] mb-2"><span class="ph" data-field="expedition.transportations.avion.body">expedition.transportations.avion.body</span></p>
       </div>
     </div>
-    <div class="bg-wh-dark text-white rounded-xl py-6 px-7 flex items-center gap-6">
+    <div class="bg-wh-dark text-white rounded-xl py-6 px-7 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
       <div class="text-[32px] shrink-0">🤝</div>
       <div>
         <h4 class="text-[15px] font-semibold mb-1 text-white">Covoiturage entre participants</h4>
@@ -519,7 +578,7 @@
         {% endif %}
       -->
       <!-- État par défaut : lien pas encore disponible -->
-      <div class="ml-auto flex flex-col items-end gap-1 shrink-0">
+      <div class="sm:ml-auto flex flex-col items-start sm:items-end gap-1 shrink-0">
         <span class="bg-white/10 text-white/50 py-2.5 px-5 rounded-lg text-[13px] font-semibold whitespace-nowrap cursor-default border border-white/10">
           💬 Groupe WhatsApp
         </span>
@@ -534,7 +593,7 @@
   <section id="repas" class="bg-wh-sand py-[72px] px-12 scroll-mt-11">
     <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-wh-teal mb-1.5">Alimentation</div>
     <div class="font-display text-[clamp(24px,3.5vw,36px)] font-bold tracking-[-0.02em] leading-[1.15] mb-8 text-wh-text">Repas &amp; <em class="not-italic text-wh-orange">ravitaillement</em></div>
-    <div class="grid grid-cols-2 gap-4 mb-7">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-7">
       <div class="bg-white rounded-xl py-[22px] px-6 border border-black/10">
         <h4 class="flex items-center gap-2.5 text-[14px] font-semibold mb-2.5">
           🍽️ Inclus dans l'expé
@@ -569,7 +628,7 @@
   <section id="pratique" class="bg-white py-[72px] px-12 scroll-mt-11">
     <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-wh-teal mb-1.5">Avant de partir</div>
     <div class="font-display text-[clamp(24px,3.5vw,36px)] font-bold tracking-[-0.02em] leading-[1.15] mb-8 text-wh-text">Informations <em class="not-italic text-wh-orange">pratiques</em></div>
-    <div class="grid grid-cols-2 gap-4 mb-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
       <div class="pratique-card border border-black/10 rounded-xl p-6">
         <h4 class="text-[13px] font-semibold mb-3 flex items-center gap-2">🛡️ Assurances</h4>
         <p class="text-[13px] text-wh-muted leading-[1.7] mb-2.5">En expé, l'imprévu fait parfois partie de l'aventure. Notre partenaire <strong>Chapka</strong> couvre :</p>
@@ -603,7 +662,7 @@
     </div>
 
     <!-- Contact block -->
-    <div class="bg-wh-dark rounded-2xl py-8 px-9 grid grid-cols-[1fr_auto] gap-8 items-center mb-7">
+    <div class="contact-grid bg-wh-dark rounded-2xl py-8 px-7 sm:px-9 grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-6 sm:gap-8 items-center mb-7">
       <div>
         <h4 class="font-display text-[20px] font-bold tracking-[-0.01em] text-white mb-1.5">Une question ? <em class="not-italic text-wh-orange">Marie est là.</em></h4>
         <p class="text-[13px] text-white/50 mb-4">Elle connaît ce programme comme sa poche. N'hésite pas à lui écrire avant le départ.</p>
@@ -612,7 +671,7 @@
           <a href="tel:+3246025616"           class="inline-flex items-center gap-2 px-[22px] py-3 rounded-[30px] text-[14px] font-semibold bg-white/10 text-white border border-white/12 no-underline hover:opacity-85 transition-opacity">📞 +32 460 25 61 85</a>
         </div>
       </div>
-      <div class="flex flex-col items-center text-center gap-1 bg-white/[0.05] border border-white/10 rounded-xl py-5 px-6 shrink-0">
+      <div class="flex flex-col items-center text-center gap-1 bg-white/[0.05] border border-white/10 rounded-xl py-5 px-6 sm:shrink-0">
         <div class="font-mono text-[8px] tracking-[0.15em] uppercase text-white/100 mb-1">Urgence 24/7</div>
         <div class="font-mono text-[20px] font-bold text-wh-orange tracking-[0.02em]">+1 507 580 0800</div>
         <div class="text-[11px] text-white/100">Numéro d'urgence Wildhartt</div>
@@ -621,7 +680,7 @@
 
     <div class="pt-6 border-t border-black/10">
       <p class="text-[11px] font-bold tracking-[0.1em] uppercase text-wh-muted font-mono mb-3.5">Sans tracas, du début à la fin</p>
-      <div class="grid grid-cols-2 gap-x-6 gap-y-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
         <div class="flex items-start gap-2 text-[13px] text-wh-muted"><span class="text-wh-teal shrink-0 mt-px">✓</span><span>Remboursement si le départ n'est pas confirmé</span></div>
         <div class="flex items-start gap-2 text-[13px] text-wh-muted"><span class="text-wh-teal shrink-0 mt-px">✓</span><span>Annulation gratuite jusqu'à 30 jours avant</span></div>
         <div class="flex items-start gap-2 text-[13px] text-wh-muted"><span class="text-wh-teal shrink-0 mt-px">✓</span><span>Guide professionnel certifié tout au long de l'expé</span></div>
@@ -664,7 +723,7 @@
     <div class="font-display text-[clamp(24px,3.5vw,36px)] font-bold tracking-[-0.02em] leading-[1.15] mb-8 text-white"><em class="not-italic text-wh-orange">Packlist</em></div>
 
     <!-- Partner Millet -->
-    <div class="bg-white/[0.05] border border-white/[0.08] rounded-xl py-5 px-6 mb-9 flex items-center gap-5">
+    <div class="bg-white/[0.05] border border-white/[0.08] rounded-xl py-5 px-6 mb-9 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
       <div class="shrink-0 flex items-center mr-4">
         <img src="images/MILLET_LOGO.png" alt="Millet" class="h-[35px] w-auto block">
       </div>
@@ -686,7 +745,7 @@
     </div>
 
     <!-- 3 colonnes -->
-    <div class="grid grid-cols-3 gap-5 mb-7">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-7">
       <div>
         <div class="flex items-center gap-2 mb-3.5 pb-2.5 border-b border-white/[0.08]">
           <div class="w-2 h-2 rounded-full bg-[#e05c5c] shrink-0"></div>
@@ -773,7 +832,7 @@
   <section id="viesurplace" class="bg-wh-cream py-[72px] px-12 scroll-mt-11">
     <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-wh-teal mb-1.5">Sur le terrain</div>
     <div class="font-display text-[clamp(24px,3.5vw,36px)] font-bold tracking-[-0.02em] leading-[1.15] mb-8 text-wh-text">Vie <em class="not-italic text-wh-orange">sur place</em></div>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div class="vsp-card bg-white border border-black/10 rounded-xl p-6">
         <h4 class="text-[14px] font-semibold mb-3 flex items-center gap-2">🏔️ Après l'activité</h4>
         <p class="text-[13px] text-wh-muted leading-[1.7] mb-3">Au refuge, le paiement se fait sur place — souvent en espèces, parfois par carte. <strong>Prends toujours un peu de liquide.</strong></p>
@@ -796,8 +855,8 @@
         <p class="text-[12px] text-wh-muted">Rien n'est obligatoire — c'est laissé à l'appréciation de chacun.</p>
       </div>
       <div class="vsp-card bg-white border border-black/10 rounded-xl p-6">
-        <h4 class="text-[14px] font-semibold mb-3 flex items-center gap-2">🍴 Le petit tips Wildhartt</h4>
-        <p class="text-[13px] text-wh-muted leading-[1.7]"><span class="ph" data-field="expedition.tips_wildhartt">expedition.tips_wildhartt</span></p> <!--Champ libre sur la page expédition : spécialités locales, endroits à voir, à goûter…-->
+        <h4 class="text-[14px] font-semibold mb-3 flex items-center gap-2">🤠 Le petit tips du guide</h4>
+        <p class="text-[13px] text-wh-muted leading-[1.7]"><span class="ph" data-field="expedition.tips_guide">expedition.tips_guide</span></p> <!--Champ libre sur la page expédition : spécialités locales, endroits à voir, à goûter…-->
 
       </div>
     </div>
@@ -831,7 +890,7 @@
   <section id="checklist" class="bg-wh-sand py-[72px] px-12 scroll-mt-11">
     <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-wh-teal mb-1.5">Dernière ligne droite</div>
     <div class="font-display text-[clamp(24px,3.5vw,36px)] font-bold tracking-[-0.02em] leading-[1.15] mb-8 text-wh-text">Checklist <em class="not-italic text-wh-orange">départ</em></div>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <div>
         <h4 class="font-mono text-[10px] tracking-[0.14em] uppercase text-wh-muted mb-3 pb-2 border-b-2 border-wh-teal">J−7 · Cette semaine</h4>
         <div class="check-item group flex items-start gap-2.5 py-2 border-b border-black/[0.05] cursor-pointer select-none" onclick="toggleCheck(this)">
@@ -944,7 +1003,7 @@
   <section id="histoire" class="bg-wh-cream py-[72px] px-12 scroll-mt-11">
     <div class="font-mono text-[9px] tracking-[0.2em] uppercase text-wh-teal mb-1.5">Notre histoire</div>
     <div class="font-display text-[clamp(24px,3.5vw,36px)] font-bold tracking-[-0.02em] leading-[1.15] mb-8 text-wh-text">Wildhartt <em class="not-italic text-wh-orange">Story</em></div>
-    <div class="grid grid-cols-2 gap-10 items-start">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 items-start">
       <div>
         <div class="font-display text-[21px] font-bold tracking-[-0.01em] leading-[1.4] border-l-4 border-wh-orange pl-5 mb-6">
           "Pour celles et ceux qui en ont marre du superficiel, et qui veulent vivre quelque chose de vrai."
@@ -957,7 +1016,7 @@
           <p class="font-display text-[16px] italic text-wh-orange mt-5">L'équipe Wildhartt</p>
         </div>
       </div>
-      <div class="rounded-2xl overflow-hidden aspect-[3/4] sticky top-[60px]">
+      <div class="rounded-2xl overflow-hidden aspect-[16/9] sm:aspect-[3/4] sm:sticky sm:top-[60px]">
         <img src="images/img-13.jpg" alt="Wildhartt nature" class="w-full h-full object-cover saturate-[0.7] object-[center_right]">
       </div>
     </div>
@@ -1005,7 +1064,7 @@
         <div class="flex-1 h-px bg-black/10"></div>
       </div>
       <p class="text-[13px] text-wh-muted mb-5 leading-[1.65]">Un autre sport, un autre pays, une autre ambiance — même niveau d'engagement, mais une expérience totalement différente.</p>
-      <div class="grid grid-cols-2 gap-4 max-w-[600px]">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:max-w-[600px]">
         <div class="rounded-[20px] overflow-hidden block relative bg-wh-dark aspect-[3/4] shadow-[0_4px_24px_rgba(0,0,0,0.15)] hover:-translate-y-1.5 hover:shadow-[0_16px_48px_rgba(0,0,0,0.20)] transition-all duration-200">
           <div class="absolute inset-0 overflow-hidden"><img src="images/img-15.jpg" alt="" class="w-full h-full object-cover saturate-[0.8] brightness-[0.7] block"></div>
           <div class="absolute top-4 right-4 w-7 h-7 rounded-full overflow-hidden border-2 border-white/30 bg-black/20 flex items-center justify-center text-[18px]" style="backdrop-filter:blur(4px);">🇨🇭</div>
